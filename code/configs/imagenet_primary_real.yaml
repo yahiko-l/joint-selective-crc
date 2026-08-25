@@ -1,0 +1,48 @@
+# B2 PC2a ImageNet PRIMARY — REAL ImageNet val + ResNet-50 V2 logits.
+# Drives the headline ImageNet width and certified-decision comparisons.
+#
+# Reproduce:
+#   1. Regenerate the per-image logits/labels with
+#      `python experiments/imagenet_compute_logits.py` (needs the public ImageNet-1k
+#      val set + torchvision ResNet-50 V2 weights; not bundled, see README "Full pipeline").
+#      Point the two paths below at the produced .npy files.
+#   2. `python experiments/imagenet_scale.py --config configs/imagenet_primary_real.yaml`
+#      -> writes results/imagenet_primary_real/results.json (30 seeds).
+# split_seed = 42 + i, so the run is deterministic and the first 10 seeds reproduce the
+# earlier 10-seed run exactly.
+
+experiment:
+  name: imagenet_primary_b2_real
+  block: B2
+
+data:
+  dataset: imagenet_real
+  logits_path: data/imagenet/val_logits.npy   # regenerate via imagenet_compute_logits.py (not bundled)
+  labels_path: data/imagenet/val_labels.npy
+  n_total: 50000     # ImageNet val size; subset via shuffle
+  n_cert: 33000      # n_cert >= 32*log(32*35/0.05)/0.01 ~= 32054
+  n_tune: 8500
+  n_test: 8500
+  n_classes: 1000
+
+grid:
+  Lambda: [0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2]
+  T: [0.5, 0.6, 0.7, 0.8, 0.9]
+
+parameters:
+  alpha: 0.05
+  pi_min: 0.01
+  delta: 0.05
+  c: 0.1
+  V: 1.0
+  B: 1.0
+
+seeds:
+  master: 42
+  n_seeds: 30   # 30 seeds back the held-out validity distribution and the re-split
+                # effect sizes; the first 10 reproduce the earlier 10-seed run exactly.
+
+output:
+  results_dir: results/imagenet_primary_real/
+
+check_sample_size: true

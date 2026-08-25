@@ -1,0 +1,12 @@
+# Core certifier + self-contained utility-leg reproduction (experiments/verify_oracle_nonvacuity.py)
+numpy==1.26.4
+scipy==1.16.3
+
+# Figure/table generation (figures/gen_*.py)
+# matplotlib>=3.7
+
+# Only for recomputing per-image losses from scratch (*_compute_logits.py); not needed
+# to reproduce any table/figure from the bundled results/ + data/.
+# torch>=2.0
+# transformers>=4.40
+# pyyaml
