@@ -1,6 +1,6 @@
-"""Certified-decision FRONTIER dump --- per-grid-pair data behind Fig 5.
+"""Certified-decision FRONTIER dump --- per-grid-pair data behind Fig. 7.
 
-Companion to `analysis_certified_decision_payoff.py` (Table IV). Table IV reports
+Companion to `analysis_certified_decision_payoff.py` (Table 8). Table 8 reports
 only the SCALAR endpoint `p_acc_cert = max{p̂ : certified}` and the certified-pair
 COUNT; that scalar makes Ours and the strengthened comparator A(p_LCB) look tied
 (`Δ = +0.00`). This script persists the per-pair geometry the scalar hides so the
@@ -15,9 +15,9 @@ the same condition mapped to the R_sel scale:
 
 so a pair is certified by a method  iff  UCB(R_sel)_method ≤ α  AND  p_LCB ≥ π_min.
 The map sends the boundary UCB(E[Z])=0 to exactly α regardless of p̂, so the y-axis
-threshold line at α IS the certification boundary (faithful, not a re-derivation).
+threshold line at α IS the certification boundary.
 
-Reuses the SAME machinery and α/π_min/δ/n_cert config as the Table IV script, so
+Reuses the SAME machinery and α/π_min/δ/n_cert config as the Table 8 script, so
 the right endpoints (.275/.805/.829) and counts (21/33/33 vs 7/27/27) must match.
 Does NOT touch results/analysis/certified_decision_payoff.json.
 
@@ -177,7 +177,7 @@ def per_seed_frontier(
             "a_pi_min": [bool(x) for x in a_cert],
             "a_plcb": [bool(x) for x in aplcb_cert],
         },
-        # scalar cross-checks vs Table IV
+        # scalar cross-checks vs Table 8
         "p_acc_cert": {
             "ours": float(p_hat[ours_cert].max()) if ours_cert.any() else 0.0,
             "a_pi_min": float(p_hat[a_cert].max()) if a_cert.any() else 0.0,
@@ -227,7 +227,7 @@ def aggregate_pairs(per_seed: list[dict], Lambda, T) -> list[dict]:
             "p_lcb": float(p_lcb_med[k]),
             "ucb_rsel": {mth: ucb_med[mth][k] for mth in methods},
             "cert_frac": {mth: float(cert_frac[mth][k]) for mth in methods},
-            # majority rule: certified if a strict majority of seeds certify it
+            # certified if at least half of the seeds certify it
             "cert": {mth: bool(cert_frac[mth][k] >= 0.5) for mth in methods},
         })
     return pairs
@@ -305,7 +305,7 @@ def run(model_caches: dict, *,
                   f"A(pi)={res['n_certified']['a_pi_min']}", flush=True)
 
         pairs = aggregate_pairs(per_seed, Lambda, T)
-        # median-across-seeds scalar cross-checks vs Table IV
+        # median-across-seeds scalar cross-checks vs Table 8
         sc = {mth: {
             "median_p_acc_cert": float(np.median([s["p_acc_cert"][mth] for s in per_seed])),
             "median_n_certified": float(np.median([s["n_certified"][mth] for s in per_seed])),
@@ -319,8 +319,8 @@ def run(model_caches: dict, *,
 
     return {
         "experiment": "analysis_cert_frontier",
-        "purpose": ("Per-grid-pair certified risk-UCB behind Fig 5 (frontier). "
-                    "Companion to Table IV; reveals strict dominance the scalar hides."),
+        "purpose": ("Per-grid-pair certified risk-UCB behind Fig. 7 (frontier). "
+                    "Companion to Table 8; reveals strict dominance the scalar hides."),
         "config": {
             "n_seeds": n_seeds, "n_cert": n_cert, "n_tune": n_tune, "n_test": n_test,
             "alpha": alpha, "pi_min": pi_min, "delta": delta,
@@ -351,7 +351,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     print(f"\n[frontier] Wrote {out_json}")
 
     # quick console cross-check
-    print("\n[frontier] scalar cross-check (median across seeds) vs Table IV:")
+    print("\n[frontier] scalar cross-check (median across seeds) vs Table 8:")
     for name, mres in summary["models"].items():
         sc = mres["scalar_check"]
         print(f"  {name}: p_acc_cert ours={sc['ours']['median_p_acc_cert']:.3f} "

@@ -1,16 +1,16 @@
-"""Reproducible verification of the utility-leg non-vacuity results (rebuttal addendum).
+"""Reproducible verification of the utility-leg non-vacuity results.
 
-Grounds, in real numbers, the three utility guarantees of the revised Theorem 1 / corollaries:
+Grounds, in real numbers, the three utility guarantees of Theorem 1 and its corollaries:
 
   (1) COCO val 2017 panoptic, alpha=0.10 (paper headline):
         - reproduces the paper headline (median certified p_acc, sigma_hat, U_LCB);
         - the LITERAL margin oracle M(alpha - gamma_r, pi_min) is EMPTY (gamma_r ~ 0.71);
         - the certified set Ghat is NON-empty on every feasible seed, so the
-          certified-set optimality bound (Cor. cor:gset-opt) and the absolute
+          certified-set optimality bound (Corollary 6) and the absolute
           certified utility U_dep(hat) >= U_LCB(hat) are non-vacuous.
   (2) COCO val 2017 panoptic, alpha=0.15:
         - a CALIBRATION PLUG-IN surrogate of the variance-adaptive external margin
-          oracle (Cor. cor:va-oracle) -- using empirical Rhat/phat/eta_Z in place of the
+          oracle (Corollary 7) -- using empirical Rhat/phat/eta_Z in place of the
           population Rsel/pacc/sigma_Z^2 the oracle is defined on -- is non-empty on every
           seed; reports the plug-in U^margin_va and verifies the guarantee. This is an
           empirical diagnostic, NOT a population-level certification of non-emptiness.
@@ -22,8 +22,8 @@ Grounds, in real numbers, the three utility guarantees of the revised Theorem 1 
 Run:
   <env-with-numpy-scipy>/python experiments/verify_oracle_nonvacuity.py
 
-All COCO numbers re-grid the cached per-image arrays at
-$SCORC_DATA_DIR/coco_data/val_mask2former_coco_{loss_pixacc,g_softmax}.npy
+All COCO numbers re-grid the bundled per-image arrays
+data/coco/val_mask2former_coco_{loss_pixacc,g_softmax}.npy (or $SCORC_COCO_DIR)
 through src/selective_crc/certify.py (the same certifier used in the paper).
 """
 from __future__ import annotations
@@ -53,7 +53,7 @@ def _find_coco_dir():
         os.environ.get("SCORC_COCO_DIR"),
         ROOT / "data" / "coco",            # bundled artifact layout: code/data/coco/
         ROOT / "code" / "data" / "coco",   # repo root with the artifact present
-        f"{DATA_ROOT}/coco_data",   # original local cache
+        f"{DATA_ROOT}/coco_data",   # SCORC_DATA_DIR cache layout
     ]
     for c in candidates:
         if c and (Path(c) / "val_mask2former_coco_loss_pixacc.npy").exists():
@@ -105,7 +105,7 @@ def coco_grid(seed, alpha, pmin=0.10, delta=0.10, m=15, n_cal=4000):
 def main():
     SEEDS = range(42, 62)  # 20 seeds, matching the paper's COCO softmax run
     print("=" * 76)
-    print("(1) COCO val 2017 panoptic  alpha=0.10 (headline): 1B-i + absolute U_LCB")
+    print("(1) COCO val 2017 panoptic  alpha=0.10 (headline): certified-set optimality + absolute U_LCB")
     print("=" * 76)
     gr = gamma_r_literal(4000, 0.10, 15, 0.10)
     print(f"literal gamma_r = {gr:.4f} -> alpha-gamma_r = {0.10-gr:+.4f} (literal oracle needs R_sel <= this)")
@@ -117,16 +117,15 @@ def main():
             nG.append(0); continue
         k = int(res.selected)
         pacc.append(float(res.p_lcb_per_pair[k])); sig_k = st["s"][k]
-        acc = st["Rhat"]  # not used directly; sigma below
+        acc = st["Rhat"]
         ulcb.append(float(res.u_lcb_per_pair[k])); nG.append(int(st["inG"].sum()))
-        # accepted-loss variance at selected pair
-        sig.append(float(st["res"].sigma_z_sq[k]))  # placeholder; recompute precise below
+        sig.append(float(st["res"].sigma_z_sq[k]))
         lit = (st["Rhat"] <= 0.10 - gr) & (st["phat"] >= 0.20)
         lit_ne += int(lit.any())
         if st["inG"].any():
             best = float(st["Udep"][st["inG"]].max())
             slack.append(float(st["Udep"][k] - (best - 2 * st["gamma_u"])))
-    # recompute sigma_hat of accepted loss at selected pair (clean)
+    # sigma_hat of the accepted loss at the selected pair
     sig_acc = []
     for seed in SEEDS:
         st = coco_grid(seed, 0.10)
@@ -143,12 +142,12 @@ def main():
     print(f"  reproduce: median sigma_hat_acc   = {np.median(sig_acc):.4f} [paper 0.0058]")
     print(f"  reproduce: median U_LCB(hat)      = {np.median(ulcb):.3f}  [paper 0.199]")
     print(f"  reproduce: median n_in_G_hat      = {int(np.median(nG))}      [paper 4]")
-    print(f"  literal margin oracle non-empty   : {lit_ne}/20 seeds (EMPTY -> reviewer correct)")
+    print(f"  literal margin oracle non-empty   : {lit_ne}/20 seeds")
     print(f"  feasible (Ghat != empty)          : {sum(x>0 for x in nG)}/20 seeds")
-    print(f"  Cor cor:gset-opt holds (slack>=0) : {sum(x>=-1e-9 for x in slack)}/{len(slack)}; median slack {np.median(slack):+.3f}")
+    print(f"  Corollary 6 holds (slack>=0)      : {sum(x>=-1e-9 for x in slack)}/{len(slack)}; median slack {np.median(slack):+.3f}")
 
     print("\n" + "=" * 76)
-    print("(2) COCO val 2017 panoptic  alpha=0.15: PLUG-IN surrogate of variance-adaptive external oracle (Cor va-oracle)")
+    print("(2) COCO val 2017 panoptic  alpha=0.15: PLUG-IN surrogate of variance-adaptive external oracle (Corollary 7)")
     print("=" * 76)
     ne = ok = 0; Um, Uh, g2 = [], [], []
     for seed in SEEDS:

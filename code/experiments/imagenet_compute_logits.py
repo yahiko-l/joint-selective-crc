@@ -42,7 +42,7 @@ def main():
     # Load model
     import torchvision.models as tvm
     weights = tvm.ResNet50_Weights.IMAGENET1K_V2
-    transform = weights.transforms()  # standard 256→224 center crop + normalize
+    transform = weights.transforms()  # resize 232, center crop 224, normalize
     print(f"[logits] loading ResNet-50 weights ({weights}) ...")
     model = tvm.resnet50(weights=weights).eval()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -63,7 +63,6 @@ def main():
         n_rows = pq_file.metadata.num_rows
         print(f"  {n_rows} rows in this shard")
 
-        # Iterate in batches via parquet's row group iteration
         shard_logits = []
         shard_labels = []
 
@@ -81,7 +80,6 @@ def main():
                 img_dict = images[i]
                 img_bytes = img_dict["bytes"] if isinstance(img_dict, dict) else img_dict
                 if img_bytes is None:
-                    # Some HF rows have path-only; skip (shouldn't happen for val)
                     raise ValueError(f"Row {i} has no image bytes")
                 img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
                 tensors.append(transform(img))

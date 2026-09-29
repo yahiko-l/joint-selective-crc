@@ -1,14 +1,13 @@
-"""Corollary 9 (regime-separation) FULL AUDIT.
+"""Corollary 9 (regime separation): full per-(pair, seed) audit.
 
-Addresses reviewer M4: the manuscript instantiates the closed-form regime
-predictor (Eq. cor-V, leading-order; Eq. cor-V-exact, finite-sample iff) on
-five representative pairs (Table III). This script runs the systematic
-per-(grid, seed) audit the manuscript defers to future work, producing a
-confusion matrix of the closed-form prediction vs the realised per-pair winner
-and the misclassification rate inside/outside the explicit near-threshold band
-of Eq. (cor-explicit-slack).
+The paper instantiates the closed-form regime predictor of Corollary 9
+(Eq. 13, leading-order; Eq. 12, finite-sample iff) on five representative
+pairs (Table 4). This script audits it on every (grid pair, seed) cell,
+producing a confusion matrix of the closed-form prediction vs the realised
+per-pair winner and the misclassification rate inside/outside the explicit
+near-threshold band of Eq. 14.
 
-It is PURE POST-PROCESSING of artefacts already in the submission:
+It post-processes existing artefacts only:
   - COCO: recomputed from the bundled per-image arrays (data/coco/*.npy),
           giving the genuine leading-order test (T_obs needs the accepted-loss
           variance, computed directly from data) on all 15 grid pairs x 30 seeds
@@ -21,7 +20,7 @@ It is PURE POST-PROCESSING of artefacts already in the submission:
           T_obs leg is not independently computable there and is omitted.
 
 Definitions (B = 1 on every surface here; matched to src/selective_crc and
-sections/4_theory.tex):
+Corollary 9):
     L_O          = log(64 m / delta)                       (eta_Z / sigma* log arg)
     L_H          = log(m / delta)                          (Hoeffding-CRC log arg)
     kappa_n      = n / (n - 1)
@@ -32,8 +31,8 @@ sections/4_theory.tex):
     actual: Ours tighter  <=>  UCB_ours-hw < UCB_hoeff-hw  (R_sel_hat cancels)
     T_obs        = sigma_hat^2_acc + (1 - p_hat)(R_sel_hat - alpha)^2   (leading-order)
     T_ex         = Sigma_Z / p_hat                                       (exact)
-    sigma*(s)    = (B^2 / 2 L_O) [ sqrt(L_H/2) - 7 L_O/(3 sqrt s) ]_+^2          (cor-V)
-    sigma_ex(s)  = (B^2 / 2 L_O) [ sqrt(L_H/2) - kappa_n 7 L_O/(3 sqrt s) ]_+^2  (cor-V-exact)
+    sigma*(s)    = (B^2 / 2 L_O) [ sqrt(L_H/2) - 7 L_O/(3 sqrt s) ]_+^2          (Eq. 13)
+    sigma_ex(s)  = (B^2 / 2 L_O) [ sqrt(L_H/2) - kappa_n 7 L_O/(3 sqrt s) ]_+^2  (Eq. 12)
     pred (LO):   Ours tighter <=> T_obs < sigma*(s)
     pred (exact):Ours tighter <=> T_ex  < sigma_ex(s)      (== actual, by the identity)
     near-threshold band: |T_obs - sigma*(s)| <= 4 B^2 (1/s + 1/n)
@@ -63,7 +62,7 @@ B = 1.0
 # Closed-form pieces (Corollary 9)
 # --------------------------------------------------------------------------
 def sigma_star(s, m, delta, B=1.0):
-    """Leading-order threshold, Eq. (cor-V). Vectorised over s."""
+    """Leading-order threshold, Eq. 13. Vectorised over s."""
     s = np.asarray(s, dtype=np.float64)
     Lo = np.log(64.0 * m / delta)
     Lh = np.log(m / delta)
@@ -72,7 +71,7 @@ def sigma_star(s, m, delta, B=1.0):
 
 
 def sigma_exact(s, n, m, delta, B=1.0):
-    """Finite-sample threshold, Eq. (cor-V-exact), with kappa_n correction."""
+    """Finite-sample threshold, Eq. 12, with kappa_n correction."""
     s = np.asarray(s, dtype=np.float64)
     Lo = np.log(64.0 * m / delta)
     Lh = np.log(m / delta)
@@ -92,7 +91,7 @@ def hoeff_halfwidth(s, m, delta, B=1.0):
 
 
 def band_halfwidth(s, n, B=1.0):
-    """Explicit near-threshold band radius, Eq. (cor-explicit-slack): 4 B^2 (1/s + 1/n)."""
+    """Explicit near-threshold band radius, Eq. 14: 4 B^2 (1/s + 1/n)."""
     s = np.asarray(s, dtype=np.float64)
     return 4.0 * B**2 * (1.0 / s + 1.0 / n)
 
@@ -101,7 +100,7 @@ def band_halfwidth(s, n, B=1.0):
 # COCO: full per-(pair, seed) recomputation from bundled arrays
 # --------------------------------------------------------------------------
 def build_grid_from_taus(g, L_raw, tau_grid):
-    """Identical to experiments/ablation_g_ade20k_segmentation.build_grid_from_taus."""
+    """Broadcast the per-image loss over the tau grid and threshold g at each tau."""
     n = len(g)
     m = len(tau_grid)
     L = np.broadcast_to(L_raw.reshape(n, 1), (n, m)).astype(np.float64)
@@ -126,7 +125,7 @@ def audit_coco_config(loss_type, alpha, pi_min, delta, g_name="g_softmax",
                       binary_threshold=0.3, min_s=2):
     """Recompute every per-(pair, seed) statistic and classify it.
 
-    Mirrors ablation_g_coco_segmentation.run_one_seed_coco's split exactly:
+    Uses the split of the COCO experiments:
     rng = default_rng(42 + s); perm; cal = perm[:n_cal]; tau = quantile(g_cal, 0.5..0.95).
     """
     L_raw = load_coco_loss(loss_type, binary_threshold)
@@ -242,7 +241,7 @@ def report_surface(res, leading_order=True):
     # exact-iff leg (always available)
     cm_e, n_e, agree_e = confusion(cells, "pred_exact_ours")
     acc_e = agree_e / n_e if n_e else float("nan")
-    lines.append(f"  finite-sample iff (Eq. cor-V-exact)  vs actual : "
+    lines.append(f"  finite-sample iff (Eq. 12)           vs actual : "
                  f"agree {agree_e}/{n_e} = {acc_e*100:.2f}%   "
                  f"[OO={cm_e[('O','O')]} HH={cm_e[('H','H')]} OH={cm_e[('O','H')]} HO={cm_e[('H','O')]}]")
     n_ours_actual = sum(c["actual_ours"] for c in cells)
@@ -259,13 +258,13 @@ def report_surface(res, leading_order=True):
         ob_dis = sum(1 for c in out_band if c["pred_lo_ours"] != c["actual_ours"])
         ib_dis = sum(1 for c in in_band if c["pred_lo_ours"] != c["actual_ours"])
         ob_acc = (len(out_band) - ob_dis) / len(out_band) if out_band else float("nan")
-        lines.append(f"  leading-order rule (Eq. cor-V)        vs actual : "
+        lines.append(f"  leading-order rule (Eq. 13)           vs actual : "
                      f"agree {agree}/{n} = {acc*100:.2f}%   "
                      f"[OO={cm[('O','O')]} HH={cm[('H','H')]} OH={cm[('O','H')]} HO={cm[('H','O')]}]")
         lines.append(f"    out-of-band  : {len(out_band)} cells, {ob_dis} disagreements "
                      f"({ob_acc*100:.2f}% agree)   <- the predictor's real accuracy")
         lines.append(f"    in-band      : {len(in_band)} cells ({100*len(in_band)/n:.1f}%), "
-                     f"{ib_dis} disagreements (band is where Eq. cor-explicit-slack permits either verdict)")
+                     f"{ib_dis} disagreements (band is where Eq. 14 permits either verdict)")
         out.update(lo_agree=agree, lo_n=n, lo_acc=acc,
                    n_in_band=len(in_band), n_out_band=len(out_band),
                    out_band_disagree=ob_dis, out_band_acc=ob_acc, in_band_disagree=ib_dis)
@@ -276,7 +275,7 @@ def main():
     np.seterr(all="ignore")
     results = []
     print("=" * 78)
-    print("Corollary 9 regime-separation FULL AUDIT  (reviewer M4)")
+    print("Corollary 9 regime-separation FULL AUDIT")
     print("=" * 78)
 
     # COCO: three loss families spanning the accepted-variance range.
@@ -305,7 +304,7 @@ def main():
     # Small-n_cal STRESS audit: at n_cal=400 the 1/s + 1/n corrections are
     # non-negligible, so the leading-order rule CAN disagree with the exact
     # winner. The claim under test is that any such disagreement is confined to
-    # the near-threshold band of Eq. (cor-explicit-slack).
+    # the near-threshold band of Eq. 14.
     print("\n" + "=" * 78)
     print("STRESS: n_cal=400 (large finite-sample corrections -> band should bind)")
     print("=" * 78)
@@ -320,9 +319,9 @@ def main():
     print("\n" + txt)
     results.append(summ_stress)
 
-    # ImageNet: finite-sample iff + census (no independent leading-order leg)
-    # The ImageNet block re-reads the cached per-(pair, seed) run. That artifact is not
-    # part of this code-only bundle; the COCO blocks above are self-contained.
+    # ImageNet: finite-sample iff + census (no independent leading-order leg).
+    # Re-reads the cached per-(pair, seed) ImageNet run and is skipped when that
+    # file is absent; the COCO blocks above need only the bundled arrays.
     if IMAGENET_JSON.exists():
         img = audit_imagenet()
         print("\n" + "-" * 78)
@@ -331,15 +330,15 @@ def main():
         results.append(summ)
     else:
         print("\n" + "-" * 78)
-        print(f"### ImageNet/RN50-V2  SKIPPED: {IMAGENET_JSON} not present in this bundle.")
+        print(f"### ImageNet/RN50-V2  SKIPPED: {IMAGENET_JSON} not found.")
         print("    Regenerate it with experiments/imagenet_scale.py "
               "--config configs/imagenet_primary_real.yaml (needs the ImageNet logit cache).")
 
-    # Sanity vs Table III: COCO pixacc certifier-selected (p_hat~0.22) & q=0.85 (k=11) pairs.
+    # Sanity vs Table 4: COCO pixacc certifier-selected (p_hat~0.22) & q=0.85 (k=11) pairs.
     # tau_grid = quantile(g_cal, linspace(0.5,0.95,15)) => k=11 is the q~0.854 threshold.
     print("\n" + "-" * 78)
-    print("Sanity check vs Table III (COCO pixacc, medians over 30 seeds):")
-    print(f"  [direct] sigma*(s=880) = {float(sigma_star(880, 15, 0.10, 1.0)):.4f}  (paper Table III: 0.041)")
+    print("Sanity check vs Table 4 (COCO pixacc, medians over 30 seeds):")
+    print(f"  [direct] sigma*(s=880) = {float(sigma_star(880, 15, 0.10, 1.0)):.4f}  (paper Table 4: 0.041)")
     pix = coco_audits[0]["cells"]
     ks = sorted(set(c["k"] for c in pix))
     med_phat = {kk: float(np.median([c["p_hat"] for c in pix if c["k"] == kk])) for kk in ks}
@@ -352,7 +351,7 @@ def main():
                   f"sigma*~{np.median([c['sigma_star'] for c in sub]):.4f}  "
                   f"s~{int(np.median([c['s'] for c in sub]))}  p_hat~{np.median([c['p_hat'] for c in sub]):.3f}  "
                   f"Ours-wins {sum(c['actual_ours'] for c in sub)}/{len(sub)}")
-    print("  (paper Table III COCO rows: T_obs=0.007<sigma*(880)=0.041 [certifier]; 0.007<0.027 [q=0.85])")
+    print("  (paper Table 4 COCO rows: T_obs=0.007<sigma*(880)=0.041 [certifier]; 0.007<0.027 [q=0.85])")
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_JSON, "w") as f:

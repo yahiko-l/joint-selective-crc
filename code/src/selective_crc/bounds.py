@@ -3,8 +3,8 @@
 Implements:
 - Maurer-Pontil empirical-Bernstein (two-sided form), per Theorem 4 of Maurer & Pontil 2009.
 - Clopper-Pearson binomial lower confidence bound via scipy.stats.beta.ppf.
-- Multiplicative Chernoff lower-tail / upper-tail threshold computations
-  (used inside the CP Sub-Lemma derivation and Lemma 1's variance bridge).
+- Multiplicative Chernoff lower-tail / upper-tail sample-size thresholds
+  (the Chernoff steps of Lemmas 2 and 3).
 
 All routines are vectorized over the grid index when applicable.
 
@@ -52,13 +52,6 @@ def maurer_pontil_two_sided_radius(
     -------
     np.ndarray or float
         Two-sided radius, same shape as sigma_sq_hat.
-
-    Notes
-    -----
-    The closed-form constant 7/3 follows from Maurer & Pontil 2009 Theorem 4
-    after the Bernstein-style derivation. The variance term is sample-variance
-    based (computable from data alone); the residual range term controls the
-    higher-order correction.
     """
     if n < 2:
         raise ValueError(f"Maurer-Pontil requires n >= 2 (got n={n}).")
@@ -105,9 +98,8 @@ def clopper_pearson_lower(
 
     Notes
     -----
-    This is the *exact* binomial inversion (Clopper-Pearson 1934). It is
-    conservative (the LCB strictly under-covers vs the discrete binomial
-    coverage probability) but always valid: P(p_LCB <= p_acc) >= 1 - delta_prime.
+    Exact binomial inversion (Clopper & Pearson 1934). Valid and conservative:
+    P(p_LCB <= p_acc) >= 1 - delta_prime.
     """
     if n < 1:
         raise ValueError(f"n must be >= 1 (got n={n}).")
@@ -134,17 +126,13 @@ def chernoff_lower_tail_threshold(
     delta_prime: float,
     epsilon: float = 0.25,
 ) -> float:
-    """Return the minimum n s.t. multiplicative-Chernoff lower-tail at level epsilon
-    holds with probability >= 1 - delta_prime under any p >= p_acc_min.
+    """Sample size at which the multiplicative-Chernoff lower tail
+    P(s <= (1 - epsilon) * n * p) <= exp(-epsilon^2 * n * p / 2) is at most
+    delta_prime for every p >= p_acc_min:
+    n = 2 * log(1/delta_prime) / (epsilon^2 * p_acc_min).
 
-    Used as a sanity helper for the sample-size condition (★) of Algorithm 1.
-
-    The bound is: P(s <= (1 - epsilon) * n * p) <= exp(-epsilon^2 * n * p / 2).
-    Setting RHS <= delta_prime gives n * p >= 2 * log(1/delta_prime) / epsilon^2.
-    For p >= p_acc_min: n >= 2 * log(1/delta_prime) / (epsilon^2 * p_acc_min).
-
-    For Algorithm 1's sample-size condition, epsilon = 1/4 gives the canonical
-    n_0 = 32 * log(1/delta_prime) / p_acc_min from the Sub-Lemma proof.
+    With epsilon = 1/4 and delta_prime = delta/(32m) this is the sample-size
+    condition (★), n_0 = 32 * log(32m/delta) / pi_min (Lemma 2).
     """
     if not (0.0 < epsilon < 1.0):
         raise ValueError("epsilon must be in (0, 1).")
@@ -157,10 +145,11 @@ def chernoff_upper_tail_threshold(
     delta_prime: float,
     epsilon: float = 0.5,
 ) -> float:
-    """Symmetric multiplicative-Chernoff upper-tail threshold helper.
+    """Sample size for the multiplicative-Chernoff upper tail
+    P(s >= (1 + epsilon) * n * p) <= exp(-epsilon^2 * n * p / (2 + epsilon)).
 
-    The bound is: P(s >= (1 + epsilon) * n * p) <= exp(-epsilon^2 * n * p / (2 + epsilon)).
-    Used in Lemma 1's variance-bridge step to argue p_hat_acc <= (3/2) * p_acc.
+    With epsilon = 1/2 this is the step of Lemma 3 that bounds
+    p_hat_acc <= (3/2) * p_acc.
     """
     if epsilon <= 0:
         raise ValueError("epsilon must be > 0.")
@@ -176,12 +165,8 @@ def empirical_bernstein_ucb(
     delta_prime: float,
     range_b: float,
 ) -> np.ndarray:
-    """One-sided UCB from two-sided Maurer-Pontil radius.
-
-    Returns mean_hat + radius, where radius is the two-sided MP at level
-    delta_prime. By the two-sided guarantee, with probability >= 1 - delta_prime,
-    both E[X] <= mean_hat + radius AND mean_hat <= E[X] + radius hold
-    simultaneously, so this is a valid UCB.
+    """UCB mean_hat + radius, with the two-sided Maurer-Pontil radius at level
+    delta_prime; E[X] <= mean_hat + radius with probability >= 1 - delta_prime.
     """
     return mean_hat + maurer_pontil_two_sided_radius(
         sigma_sq_hat, n, delta_prime, range_b

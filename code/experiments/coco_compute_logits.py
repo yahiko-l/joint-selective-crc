@@ -1,17 +1,12 @@
-"""R033 — Cache per-image quantities for COCO val 2017 × Mask2Former-COCO-Panoptic.
+"""Cache per-image quantities for COCO val 2017 × Mask2Former-COCO-Panoptic.
 
 For each image i in COCO val 2017 (n=5000), cache:
 - per_image_miou[i]: mIoU of predicted vs ground-truth semantic segmentation (built from panoptic).
-- per_image_pixacc[i]: per-pixel accuracy (alternative loss formulation; potentially lower-variance).
+- per_image_pixacc[i]: per-pixel accuracy.
 - per_image_loss[i] = 1 - per_image_miou[i]
 - per_image_loss_pixacc[i] = 1 - per_image_pixacc[i]
 - per_image_g_softmax[i]: mean per-pixel softmax-max confidence (primary acceptance score)
 - per_image_g_entropy[i]: 1 - mean(entropy)/log(N) (alternative)
-
-Why COCO (5000 imgs) over ADE20K (2000): Ours's variance-adaptive payoff
-needs n · π_min ≫ ~150. ADE20K at n=2000, π_min=0.10 → 200 (borderline failure).
-COCO at n_cal=4000, π_min=0.10 → 400 — should let Ours dominate Hoeffding-CRC
-*if* the continuous mIoU loss has variance structure that benefits Bernstein.
 
 Model: facebook/mask2former-swin-base-coco-panoptic (~400 MB), 133-class panoptic output
        (80 things + 53 stuff merged categories per COCO panoptic spec).

@@ -1,8 +1,8 @@
 """Compute ResNet-50 V2 logits on ImageNet-V2 matched-frequency and cache as .npy.
 
 ImageNet-V2 (Recht et al. 2019) is a re-collected ImageNet validation set
-with the same 1000 class labels. Used here for B11 distribution-shift
-robustness analysis.
+with the same 1000 class labels. Used here for the distribution-shift
+analysis.
 
 Loads (directory-of-classes format):
   $SCORC_DATA_DIR/imagenet_v2_data/imagenetv2-matched-frequency-format-val/

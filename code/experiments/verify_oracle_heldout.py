@@ -1,9 +1,9 @@
 """Held-out, high-confidence certification that the external margin oracle is non-empty.
 
-Addresses reviewer M1 / Q1: upgrade the calibration *plug-in* diagnostic of
-Mset(alpha - gamma_r, pi_min) non-emptiness (verify_oracle_nonvacuity.py case 3,
-which compares the empirical Rhat/phat to thresholds on the same split) to a
-*population-level* certification on an INDEPENDENT held-out split.
+Turns the calibration *plug-in* check of Mset(alpha - gamma_r, pi_min)
+non-emptiness (verify_oracle_nonvacuity.py case 3, which compares the empirical
+Rhat/phat to thresholds on the same split) into a *population-level*
+certification on an INDEPENDENT held-out split.
 
 Certificate (for a grid built independently of the held-out split). For each pair
 (lambda, tau) we compute, on the held-out split, at per-event level delta'/(3m):
@@ -100,7 +100,8 @@ def make_grid_AcLv(g_split, L_split, tau):
 
 
 # ----------------------------------------------------------------------------
-# (A) Synthetic existence surface  (paper case 3), upgraded to held-out certification
+# (A) Synthetic existence surface (verify_oracle_nonvacuity.py case 3), certified
+#     on a held-out split
 # ----------------------------------------------------------------------------
 def run_synthetic(delta_prime=0.05):
     alpha, pmin, delta, m = 0.30, 0.20, 0.10, 15
@@ -123,8 +124,8 @@ def run_synthetic(delta_prime=0.05):
 
 
 # ----------------------------------------------------------------------------
-# (B) COCO real surface  -- best-effort scan for a gamma_r < alpha config with
-#     a held-out-certifiable non-empty Mset.  Honest: report pass/fail per config.
+# (B) COCO real surface  -- scan for a gamma_r < alpha config with a
+#     held-out-certifiable non-empty Mset; reports pass/fail per config.
 # ----------------------------------------------------------------------------
 def coco_arrays():
     d = _find_coco_dir()
@@ -164,7 +165,7 @@ def run_coco(delta_prime=0.05):
 def main():
     np.seterr(all="ignore")
     print("=" * 80)
-    print("Held-out high-confidence certification of external margin-oracle non-emptiness (M1/Q1)")
+    print("Held-out high-confidence certification of external margin-oracle non-emptiness")
     print("=" * 80)
 
     syn = run_synthetic()
@@ -202,7 +203,7 @@ def main():
     print("SUMMARY:")
     print(f"  Synthetic surface: external oracle non-emptiness {'CERTIFIED (held-out, population-valid)' if syn['certified'] else 'NOT certified'}.")
     print(f"  COCO real surface: {'a config certified' if any_coco else 'no scanned config certifies a non-empty Mset'} "
-          f"-- the gamma_r vs 2*pi_min tension (Sec. V-C) is{'' if any_coco else ' confirmed'} on real headline-scale data.")
+          f"-- the gamma_r vs 2*pi_min tension (Section 5.3) is{'' if any_coco else ' confirmed'} on real headline-scale data.")
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_JSON, "w") as f:

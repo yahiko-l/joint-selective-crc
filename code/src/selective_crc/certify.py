@@ -10,7 +10,7 @@ Inputs to certify_grid:
 Output: AlgorithmResult dataclass containing (lambda_hat, tau_hat) or INFEASIBLE
         plus full per-pair diagnostics (EB, p_LCB, U_LCB, In_G_hat flags).
 
-Spec: Algorithm 1; constants from Theorem 1 / Lemma 1 / Lemma 2.
+Spec: Algorithm 1, with the confidence levels of Table 3.
 """
 
 from __future__ import annotations
@@ -117,7 +117,7 @@ def certify_grid(
         )
     n_cert, m = L.shape
 
-    # Validate bounds (algorithmic sanity, not just paranoia)
+    # Validate input ranges
     if not np.all((L >= 0) & (L <= B + 1e-9)):
         raise ValueError(f"L must lie in [0, B={B}].")
     if not np.all(np.isin(A, [0, 1])):

@@ -1,17 +1,13 @@
-"""B2/B3 ImageNet-scale experiments.
+"""ImageNet runner: Algorithm 1 and the per-pair Baseline A / B widths.
 
-Per EXPERIMENT_PLAN.md M3/M4:
-- B2 PRIMARY (PC2a): π_min=0.01, n_cert=33000 → expect Ours ≤ 0.75× Baseline A on low-π̂_acc
-- B3 SECONDARY (PC2b): π_min=0.02, n_cert=25000 → expect Ours ≈ Baseline B (tied)
+Driven by a YAML config (configs/imagenet_primary_real.yaml) with real ImageNet
+val logits and labels precomputed by `experiments/imagenet_compute_logits.py`
+(ResNet-50 V2, top-1 = 0.8084). Per seed it certifies on D_cert, checks the
+selected pair on the held-out test split, and records the per-pair widths;
+results go to <results_dir>/results.json.
 
-Preferred path (used by configs/imagenet_*_real.yaml): real ImageNet val logits
-and labels precomputed by `experiments/imagenet_compute_logits.py` (ResNet-50
-V2, top-1 = 0.8084). The headline PC2a 0.118 ratio in `results/imagenet_primary_real/`
-comes from this real-data path.
-
-Legacy path (`_make_synthetic_imagenet_data`): synthetic-realistic logits +
-synthetic labels at 50k × 1000 scale, retained for back-compat with the
-non-`_real.yaml` configs only. New runs should use the real-data path.
+`_make_synthetic_imagenet_data` draws synthetic logits at the same scale; it is
+used only when the config's data.dataset is not `imagenet_real`.
 """
 
 from __future__ import annotations
@@ -43,7 +39,7 @@ def _load_real_imagenet_data(
     logits_path: str, labels_path: str
 ) -> tuple[np.ndarray, np.ndarray]:
     """Load real ImageNet val logits + labels precomputed by
-    experiments/imagenet_compute_logits.py via ResNet-50 ImageNet-V2 weights.
+    experiments/imagenet_compute_logits.py (ResNet-50, IMAGENET1K_V2 weights).
     """
     import os
     if not os.path.exists(logits_path):
@@ -71,10 +67,7 @@ def _load_real_imagenet_data(
 def _make_synthetic_imagenet_data(
     n_total: int, n_classes: int, accuracy_target: float, seed: int
 ) -> tuple[np.ndarray, np.ndarray]:
-    """(LEGACY) Generate synthetic ImageNet-scale (Y, logits) for sanity testing.
-
-    Real ImageNet pipeline should use `_load_real_imagenet_data` instead.
-    """
+    """Generate synthetic ImageNet-scale (Y, logits) for sanity testing."""
     rng = np.random.default_rng(seed)
     print(f"[imagenet] generating SYNTHETIC data (NOT real ImageNet): n={n_total}, n_classes={n_classes}, target acc={accuracy_target}")
     Y = rng.integers(0, n_classes, size=n_total)
@@ -214,7 +207,7 @@ def main(config_path: Path):
     out_dir = Path(cfg["output"]["results_dir"])
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Load (Y, logits) once: prefer real ImageNet, fall back to synthetic if missing.
+    # Load (Y, logits) once; data.dataset in the config selects real or synthetic data.
     source = cfg["data"].get("dataset", "imagenet_synthetic")
     if source == "imagenet_real":
         Y_full, logits_all = _load_real_imagenet_data(
@@ -247,7 +240,7 @@ def main(config_path: Path):
     n_vio_p = sum(1 for s in feasible if s["vio_p_selected"])
     n_vio_joint = sum(1 for s in feasible if s["vio_r_selected"] or s["vio_p_selected"])
 
-    # Per-pair ratios, filtered by low-acceptance regime (p_hat ≤ 2·π_min) for PC2a
+    # Per-pair ratios, all pairs and the low-acceptance regime (p_hat ≤ 2·π_min)
     pi_min = cfg["parameters"]["pi_min"]
     ratios_a_low = []
     ratios_a_all = []

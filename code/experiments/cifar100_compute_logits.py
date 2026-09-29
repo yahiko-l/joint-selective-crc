@@ -2,11 +2,8 @@
 
 Caches test logits + labels to $SCORC_DATA_DIR/cifar100_data/.
 
-Note: chenyaofo's hub provides resnet20 / resnet32 / resnet44 / resnet56 for
-CIFAR-100. The original user request was ResNet-110, but that model is not in
-the chenyaofo hub; ResNet-56 is the closest available standard checkpoint
-(top-1 ≈ 0.7261). The accuracy difference is immaterial for our certification
-diagnostic.
+chenyaofo's hub provides resnet20 / resnet32 / resnet44 / resnet56 for CIFAR-100;
+the default ResNet-56 checkpoint has top-1 ≈ 0.7261.
 """
 
 from __future__ import annotations

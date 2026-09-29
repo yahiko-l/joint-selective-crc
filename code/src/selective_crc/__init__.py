@@ -1,4 +1,4 @@
-"""Certified-Utility Selective Risk Control via a Margin-Oracle Ratio Bound.
+"""A Joint Finite-Sample Certificate for Adaptive Selective Conformal Risk Control.
 
 Implementation of Algorithm 1 of the paper.
 """

@@ -1,14 +1,10 @@
-"""B4 — CIFAR-100 PC2c sanity / honest-disclosure experiment.
+"""CIFAR-100 sanity run and the shared prediction-set / acceptance helpers.
 
 Small CIFAR-100 sanity configuration (n_cert=500, pi_min=0.10, 1 seed).
 
 Ground-truth labels Y_i come from REAL CIFAR-100 test split (downloaded via
-torchvision). Model logits come from:
-  - 'pretrained': chenyaofo/pytorch-cifar-models ResNet-20 via torch.hub
-                  (requires network access)
-  - 'synthetic_realistic': synthetic logits that produce ~70% top-1 accuracy
-                            against the real Y_i (no network needed; used for
-                            sanity when network is unavailable)
+torchvision). Model logits come from logits_source 'synthetic_realistic':
+synthetic logits that produce ~70% top-1 accuracy against the real Y_i.
 
 The loss L = 1{Y ∉ C_λ(X)} is mis-coverage of the prediction set; the
 prediction set C_λ(X) is the smallest set covering >= 1 - λ of the softmax
@@ -62,7 +58,7 @@ def load_cifar100_test_labels(n_subset: int, seed: int) -> tuple[np.ndarray, np.
     from torchvision.datasets import CIFAR100
     from torchvision import transforms
 
-    # Standard CIFAR-100 normalization (not used for label-only mode)
+    # Only the labels are used, so the images are not normalised.
     transform = transforms.Compose([transforms.ToTensor()])
     cache_dir = os.environ.get("TORCH_DATA_ROOT", str(Path.home() / ".cache" / "torchvision"))
     Path(cache_dir).mkdir(parents=True, exist_ok=True)
@@ -138,40 +134,31 @@ def generate_synthetic_realistic_logits(
 
 
 def load_pretrained_logits(images, n_classes=100) -> np.ndarray:
-    """Stub for pretrained-model logits. Requires network for first call."""
+    """Pretrained-model logits; not implemented in this release."""
     raise NotImplementedError(
-        "pretrained logits via torch.hub chenyaofo/pytorch-cifar-models not yet "
-        "wired up; use logits_source: synthetic_realistic for the sanity."
+        "pretrained logits via torch.hub chenyaofo/pytorch-cifar-models are not "
+        "implemented; use logits_source: synthetic_realistic for the sanity run."
     )
 
 
-# --- Prediction-set construction (LAC: Least Ambiguous set-valued Classifiers)
+# --- Prediction-set construction (smallest top-ranked set with softmax mass >= 1 - λ)
 
 
 def construct_prediction_sets(logits: np.ndarray, Lambda: np.ndarray) -> np.ndarray:
     """For each (i, k), determine which labels are in C_{λ_k}(X_i).
 
-    NOTE — NOT CALLED BY ANY EXPERIMENT: experiments use the memory-efficient
-    `_compute_contains_and_size` below (which returns only `contains_Y` and
-    `set_size` rather than the full (n, n_classes, m_lambda) boolean tensor).
-    Retained as a reference implementation of the explicit set construction.
+    Reference implementation of the explicit set construction; the experiments
+    use the memory-efficient `_compute_contains_and_size` below, which returns
+    only `contains_Y` and `set_size`.
 
-    The prediction set C_λ(X) is the smallest set s.t. softmax probability
-    sums >= 1 - λ (using the standard "smallest cumulative softmax" set,
-    a.k.a. LAC / APS-without-randomization).
+    C_λ(X) is the smallest set of top-ranked classes whose softmax probabilities
+    sum to at least 1 - λ.
 
     Returns
     -------
     contains : np.ndarray of bool, shape (n, n_classes, m_lambda)
         contains[i, c, k] = 1 iff class c is in the prediction set
         C_{Lambda[k]}(X_i).
-
-    Notes
-    -----
-    For memory efficiency at larger scales, the (n, n_classes, m_lambda) tensor
-    could be replaced by storing only the set-size + (i, k) → contains_Y_i bool.
-    For sanity (n=500, n_classes=100, m_lambda=7) the tensor is ~1.4M floats:
-    fine in RAM.
     """
     n, n_classes = logits.shape
     m_lambda = len(Lambda)
@@ -270,8 +257,7 @@ def run(config_path: Path) -> dict:
         raise ValueError(
             f"Requested n_cert + n_tune + n_test = {requested_total} > CIFAR-100 test size {len(Y_full)}."
         )
-    # Use the first requested_total indices in the (seed-shuffled) ordering to avoid waste.
-    # Actually: we restrict to a random subset of size requested_total using the master seed.
+    # Restrict to a random subset of size requested_total drawn with the master seed.
     master_rng = np.random.default_rng(cfg["seeds"]["master"])
     subset_idx = master_rng.choice(len(Y_full), size=requested_total, replace=False)
     Y_all = Y_full[subset_idx]
@@ -321,9 +307,8 @@ def run(config_path: Path) -> dict:
     A_lambda_tau = construct_acceptance(logits_cert, T)  # (n_cert, m_tau)
     A_grid = np.tile(A_lambda_tau, (1, m_lambda))  # shape (n_cert, m_lambda*m_tau)
 
-    # Deployment value v: per EXPERIMENT_PLAN §B2 main paper convention:
-    #   v(C_λ(X), Y) = 1{Y ∈ C_λ(X)} / |C_λ(X)|  (accuracy / set-size)
-    # Bounded in [0, 1] since set_size >= 1 always; matches V=1 in config.
+    # Deployment value v(C_λ(X), Y) = 1{Y ∈ C_λ(X)} / |C_λ(X)| (the paper's
+    # set-size-discounted correctness), in [0, 1] since set_size >= 1; V = 1.
     set_size_safe = np.maximum(set_size, 1)  # avoid div-by-zero (set_size already >= 1)
     v_lambda = contains_Y.astype(np.float64) / set_size_safe.astype(np.float64)
     v_grid = np.repeat(v_lambda, m_tau, axis=1)

@@ -1,4 +1,4 @@
-"""Matched joint Hoeffding--CRC ablation, "joint-H" (revision).
+"""Matched joint Hoeffding--CRC ablation, "joint-H".
 
 Construction: Algorithm 1 with exactly ONE substitution. The line-5
 empirical-Bernstein UCB on E[Z] is replaced by the one-sided range-Hoeffding
@@ -10,7 +10,7 @@ a choice deliberately favourable to the baseline (one-sided, since only the
 upper tail is needed for the returned-pair validity tier). The Clopper-Pearson
 acceptance leg (delta/(16m)), the Maurer-Pontil utility leg (delta/(2m)), the
 membership rule (numerator UCB <= 0 AND p_LCB >= pi_min), the argmax-U_LCB
-selection rule, the grid, and the total failure budget are byte-identical to
+selection rule, the grid, and the total failure budget are identical to
 `certify_grid`. Both certifiers therefore use the same nominal failure budget
 delta and the same basic-tier allocations, with union-bound failure at most
 5*delta/8; the basic-tier proof is unchanged except that the U1 event family
@@ -18,14 +18,15 @@ is swapped. No inclusion or external-oracle guarantee is asserted for joint-H,
 regardless of the surface's (star) status.
 
 Surfaces:
-  - ImageNet RN50/101/152 V2, D protocol (n_cert=33000, 20 seeds 42..61, m=35,
-    alpha=0.05, pi_min=0.01, delta=0.05, c=0.1, V=1).
-  - COCO val 2017 panoptic, canonical re-grid path (30 splits 42..71, m=15,
+  - ImageNet RN50/101/152 V2, certified-decision protocol of Table 8
+    (n_cert=33000, 20 seeds 42..61, m=35, alpha=0.05, pi_min=0.01,
+    delta=0.05, c=0.1, V=1).
+  - COCO val 2017 panoptic, headline protocol (30 splits 42..71, m=15,
     alpha=pi_min=delta=0.10, c=0, V=1); the ours-side values reproduce the
-    published headline (29/30 feasible, U_LCB = 0.199 at the returned pair).
+    paper's headline (29/30 feasible, U_LCB = 0.199 at the returned pair).
 
 Reported per surface and method: feasibility, certified-set size, maximum
-certified acceptance (Table 7 convention), returned-pair empirical acceptance
+certified acceptance (Table 8 convention), returned-pair empirical acceptance
 p_hat(lambda_hat, tau_hat), returned-pair U_LCB; returned-pair statistics are
 aggregated over feasible runs only (never zero-imputed). The returned-pair
 p_LCB is retained in this artifact for audit. Per-seed records, the

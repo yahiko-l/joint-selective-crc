@@ -1,7 +1,7 @@
 """Compute ResNet-152 V2 logits on real ImageNet val (HF parquet shards) and cache as .npy.
 
 Identical pipeline to imagenet_compute_logits.py and imagenet_compute_logits_resnet101.py,
-but uses torchvision ResNet-152 V2 (~82.5% top-1 acc on ImageNet val).
+but uses torchvision ResNet-152 V2 (~82.3% top-1 acc on ImageNet val).
 
 Outputs:
   $SCORC_DATA_DIR/imagenet_data/val_logits_resnet152.npy  # (50000, 1000) float32

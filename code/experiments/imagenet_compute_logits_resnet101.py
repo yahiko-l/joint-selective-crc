@@ -9,9 +9,7 @@ Outputs:
 Model: torchvision.models.resnet101(weights=ResNet101_Weights.IMAGENET1K_V2)
        — Torchvision published top-1 ≈ 0.8189 (V2 weights); our run achieved 0.8191.
 
-This is the second-architecture supplement, confirming
-the C2 regime claim on a stronger ImageNet model than ResNet-50 V2 (the
-primary). Sister script to experiments/imagenet_compute_logits.py (ResNet-50 V2).
+Same pipeline as experiments/imagenet_compute_logits.py (ResNet-50 V2).
 """
 
 from __future__ import annotations
@@ -46,7 +44,7 @@ def main():
     # Load model
     import torchvision.models as tvm
     weights = tvm.ResNet101_Weights.IMAGENET1K_V2
-    transform = weights.transforms()  # standard 256→224 center crop + normalize
+    transform = weights.transforms()  # resize 232, center crop 224, normalize
     print(f"[logits] loading ResNet-101 V2 weights ({weights}) ...")
     model = tvm.resnet101(weights=weights).eval()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -67,7 +65,6 @@ def main():
         n_rows = pq_file.metadata.num_rows
         print(f"  {n_rows} rows in this shard")
 
-        # Iterate in batches via parquet's row group iteration
         shard_logits = []
         shard_labels = []
 
@@ -85,7 +82,6 @@ def main():
                 img_dict = images[i]
                 img_bytes = img_dict["bytes"] if isinstance(img_dict, dict) else img_dict
                 if img_bytes is None:
-                    # Some HF rows have path-only; skip (shouldn't happen for val)
                     raise ValueError(f"Row {i} has no image bytes")
                 img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
                 tensors.append(transform(img))

@@ -289,7 +289,7 @@ def run(model_caches: dict, *,
 def write_markdown(summary: dict, out_md: Path) -> None:
     cfg = summary["config"]
     lines = []
-    lines.append("# Table IV — Certified-Decision Payoff (reanalysis)\n")
+    lines.append("# Table 8: Certified-Decision Payoff\n")
     lines.append(f"**Source script**: `experiments/analysis_certified_decision_payoff.py`")
     lines.append(f"**Config**: α={cfg['alpha']}, π_min={cfg['pi_min']}, δ={cfg['delta']}, "
                  f"n_cert={cfg['n_cert']}, n_seeds={cfg['n_seeds']}")
@@ -323,17 +323,15 @@ def write_markdown(summary: dict, out_md: Path) -> None:
     lines.append("**Reading**:")
     lines.append("- `A(π_min)`: the conservative π_min-saturated Hoeffding-CRC selective bound "
                  "(`margin = (B/π_min)·√(log(2m/δ)/(2n))`). Saturated at the worst-case "
-                 "acceptance lower bound; certifies 0 pairs on every backbone at this α. "
-                 "This is the bound the original Table IV referred to as \"Hoeffding-style baseline\".")
-    lines.append("- `A(p_LCB)`: a tighter Hoeffding variant using the Clopper-Pearson "
-                 "`p_LCB` instead of `π_min` in the denominator. The fairer like-for-like "
-                 "comparison since both Ours and A(p_LCB) use the actual acceptance lower bound.")
-    lines.append("- The headline `Δ vs A(π_min)` is the operational decision-frontier gain "
-                 "as stated in the plan's metric definition. The `Δ vs A(p_LCB)` row is the "
-                 "like-for-like comparison against the strengthened data-driven variant.")
-    lines.append("- B's certified `p_acc_cert` is per-pair-tighter than A on the same surface "
-                 "— this is the comparator-regime delta honestly disclosed in §VI ¶1, not a "
-                 "contradiction of the headline.")
+                 "acceptance lower bound; certifies 0 pairs on every backbone at this α.")
+    lines.append("- `A(p_LCB)`: the Hoeffding variant with the Clopper-Pearson `p_LCB` "
+                 "instead of `π_min` in the denominator. It shares the acceptance leg "
+                 "`p_LCB ≥ π_min` with Ours, so the two differ only in the risk bound.")
+    lines.append("- `Δ vs A(π_min)` is the operational decision-frontier gain; "
+                 "`Δ vs A(p_LCB)` is the like-for-like comparison against the "
+                 "data-driven variant.")
+    lines.append("- B (per-pair Bernstein on accepted samples) is per-pair tighter than A "
+                 "on the same surface; Section 6 compares it with Ours.")
     out_md.write_text("\n".join(lines))
 
 

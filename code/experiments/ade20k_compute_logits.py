@@ -1,10 +1,10 @@
-"""R026 + R027 — Cache per-image quantities for ADE20K val × {Mask2Former, SegFormer}.
+"""Cache per-image quantities for ADE20K val × {Mask2Former, SegFormer}.
 
 For each image i in ADE20K val (n=2000), cache:
 - per_image_miou[i]: mIoU of predicted vs ground-truth segmentation in [0, 1]
 - per_image_loss[i] = 1 - per_image_miou[i] in [0, 1]  (bounded loss L)
 - per_image_g_softmax[i]: mean per-pixel softmax-max confidence (primary acceptance score)
-- per_image_g_entropy[i]: -mean per-pixel prediction entropy / log(150) (alternative, for G.4)
+- per_image_g_entropy[i]: 1 - mean per-pixel prediction entropy / log(150) (alternative)
 
 Outputs:
   $SCORC_DATA_DIR/ade20k_data/val_{model}_miou.npy        # (2000,) float32
@@ -17,8 +17,6 @@ Models:
   --model segformer     nvidia/segformer-b2-finetuned-ade-512-512
 
 Compute: ~30 min per backbone on 1 H100.
-
-Spec: refine-logs/EXPERIMENT_PLAN_ADE20K_ADDENDUM.md §G.1.
 """
 from __future__ import annotations
 
@@ -93,7 +91,7 @@ def run_mask2former(img: Image.Image, processor, model, device):
     pred = seg_maps[0].cpu().numpy().astype(np.int32)
 
     # Per-pixel class probability: softmax(class_logits)[..., :-1] weighted by sigmoid(mask_logits)
-    # Numerical-safety fix: upcast to float32 for entropy + normalisation safety
+    # Upcast to float32 for the normalisation and the entropy
     class_logits = out.class_queries_logits.float()  # (1, Q, C+1)
     mask_logits = out.masks_queries_logits.float()  # (1, Q, H', W')
     class_prob = torch.softmax(class_logits, dim=-1)[..., :-1]  # drop no-object
@@ -124,7 +122,7 @@ def run_segformer(img: Image.Image, processor, model, device):
     with torch.no_grad():
         out = model(**inputs)
     # SegFormer logits: (1, C, h, w) — h, w are 1/4 of input
-    # Numerical-safety fix: upcast logits to float32 before softmax + interpolate (fp16 safety)
+    # Upcast logits to float32 before interpolation and softmax
     logits = out.logits.float()  # (1, 150, h, w)
     H, W = img.size[1], img.size[0]
     logits_full = interpolate(logits, size=(H, W), mode="bilinear", align_corners=False)
@@ -164,7 +162,6 @@ def main():
         val_anns = val_anns[: args.limit]
         n = args.limit
     else:
-        # --n is honoured here
         if args.n > len(val_imgs):
             raise ValueError(f"requested n={args.n} > {len(val_imgs)}")
         val_imgs = val_imgs[: args.n]

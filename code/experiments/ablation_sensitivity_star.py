@@ -1,21 +1,22 @@
 """Hyperparameter-sensitivity star design and small-calibration regime.
 
-One-at-a-time sweeps around the anchor shared by the released A-series
-diagnostics, (alpha, delta, pi_min, m, n_cert) = (0.05, 0.05, 0.02, 35, 25000),
+One-at-a-time sweeps around the anchor shared by the released pi_min, grid-size
+and n_cert sweeps, (alpha, delta, pi_min, m, n_cert) = (0.05, 0.05, 0.02, 35, 25000),
 on cached ImageNet ResNet-50 V2 logits:
 
-- pi_min axis : replicates A1 seed-for-seed (n_tune = n_test = 12500) and
-  asserts feasibility / held-out violation counts against the committed
+- pi_min axis : replicates the pi_min sweep seed-for-seed (n_tune = n_test = 12500)
+  and asserts feasibility / held-out violation counts against
   A1_imagenet_resnet50v2_pi_min_sweep.json.
-- m axis      : replicates A9 seed-for-seed (same protocol, A9's equispaced
-  lambda grids) and asserts against A9_imagenet_resnet50v2_grid_size_sweep.json.
-- n_cert axis : replicates A8 seed-for-seed (n_tune = n_test = 5000) and
-  asserts against A8_imagenet_resnet50v2_n_cert_sweep.json.
-- alpha axis  : NEW, {0.02, 0.05, 0.10, 0.15, 0.20} on the A1 protocol.
-- delta axis  : NEW, {0.01, 0.05, 0.10, 0.20} on the A1 protocol.
-- small-n     : NEW, n_cert in {250, 500, 750, 1000} x alpha in {0.05, 0.20}
-  on the A8 protocol with 30 seeds (feasibility boundary + held-out validity
-  of every emitted certificate).
+- m axis      : replicates the grid-size sweep seed-for-seed (same protocol, its
+  equispaced lambda grids) and asserts against
+  A9_imagenet_resnet50v2_grid_size_sweep.json.
+- n_cert axis : replicates the n_cert sweep seed-for-seed (n_tune = n_test = 5000)
+  and asserts against A8_imagenet_resnet50v2_n_cert_sweep.json.
+- alpha axis  : {0.02, 0.05, 0.10, 0.15, 0.20} on the pi_min-sweep protocol.
+- delta axis  : {0.01, 0.05, 0.10, 0.20} on the pi_min-sweep protocol.
+- small-n     : n_cert in {250, 500, 750, 1000} x alpha in {0.05, 0.20}
+  on the n_cert-sweep protocol with 30 seeds (feasibility boundary + held-out
+  validity of every emitted certificate).
 
 Every cell records: feasible runs, held-out joint violations among feasible
 runs, and medians over feasible runs of |G_hat|, the deployed pair's U_LCB,
@@ -49,7 +50,7 @@ OUT = ROOT / "results" / "ablation_supplement"
 LOGITS = f"{DATA_ROOT}/imagenet_data/val_logits.npy"
 LABELS = f"{DATA_ROOT}/imagenet_data/val_labels.npy"
 
-# Anchor (shared by A1 / A8 / A9)
+# Anchor (shared by the pi_min, n_cert and grid-size sweeps)
 ALPHA0, DELTA0, PIMIN0 = 0.05, 0.05, 0.02
 C0, V0, B0 = 0.1, 1.0, 1.0
 LAMBDA0 = [0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2]
@@ -57,13 +58,13 @@ TAU0 = [0.5, 0.6, 0.7, 0.8, 0.9]
 N_CLASSES = 1000
 
 # Axis values
-PIMIN_AXIS = [0.005, 0.01, 0.02, 0.05, 0.10]           # = A1
-NCERT_AXIS = [2000, 5000, 10000, 15000, 25000]         # = A8
-MLAMBDA_AXIS = [3, 7, 14, 16]                          # = A9 (m = 15/35/70/80)
-ALPHA_AXIS = [0.02, 0.05, 0.10, 0.15, 0.20]            # NEW
-DELTA_AXIS = [0.01, 0.05, 0.10, 0.20]                  # NEW
-SMALL_N = [250, 500, 750, 1000]                        # NEW
-SMALL_N_ALPHAS = [0.05, 0.20]                          # NEW
+PIMIN_AXIS = [0.005, 0.01, 0.02, 0.05, 0.10]           # pi_min sweep
+NCERT_AXIS = [2000, 5000, 10000, 15000, 25000]         # n_cert sweep
+MLAMBDA_AXIS = [3, 7, 14, 16]                          # grid-size sweep (m = 15/35/70/80)
+ALPHA_AXIS = [0.02, 0.05, 0.10, 0.15, 0.20]
+DELTA_AXIS = [0.01, 0.05, 0.10, 0.20]
+SMALL_N = [250, 500, 750, 1000]
+SMALL_N_ALPHAS = [0.05, 0.20]
 
 N_SEEDS_STAR = 10
 N_SEEDS_SMALL = 30
@@ -75,7 +76,7 @@ A9_LAMBDA_POOL = [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5,
 
 def build_seed_data(logits_full, labels_full, split_seed, n_cert, n_tune, n_test,
                     Lambda, T):
-    """Reproduce the A-series per-seed data pipeline exactly."""
+    """Per-seed certification and test data, as in the released sweeps."""
     rng = np.random.default_rng(split_seed)
     req_total = n_cert + n_tune + n_test
     subset = rng.choice(len(labels_full), size=req_total, replace=False)
@@ -159,7 +160,7 @@ def main():
 
     out = {"axes": {}, "small_n": [], "asserts": {}}
 
-    # ---- Protocol P1 (A1/A9-style): n_cert=25000, n_tune=n_test=12500 -----
+    # ---- Protocol P1: n_cert=25000, n_tune=n_test=12500 ----------------------
     # Anchor-grid data, one build per seed, shared by the pi_min/alpha/delta axes.
     p1_data = []
     for i in range(N_SEEDS_STAR):
@@ -168,7 +169,7 @@ def main():
             np.array(LAMBDA0), np.array(TAU0)))
         print(f"[P1] seed {42+i} data built")
 
-    # pi_min axis (= A1 replication)
+    # pi_min axis (replicates the pi_min sweep)
     rows = []
     for pi_min in PIMIN_AXIS:
         cells = [run_cell(*d, alpha=ALPHA0, pi_min=pi_min, delta=DELTA0)
@@ -187,14 +188,14 @@ def main():
         ref_vio = 0 if ref["vio_joint_rate"] in (None, 0, 0.0) else round(
             ref["vio_joint_rate"] * ref["n_feasible"])
         assert row["n_vio_joint"] == ref_vio, (row, ref)
-        # |G_hat| per seed must match A1's recorded n_certified
+        # |G_hat| per seed must match the sweep's recorded n_certified
         for cell, ps in zip(row["per_seed"], ref["per_seed"]):
             if cell["feasible"]:
                 assert cell["n_certified"] == ps["n_certified"], (cell, ps)
     out["asserts"]["A1_pi_min"] = "pass"
-    print("[assert] pi_min axis == A1: pass")
+    print("[assert] pi_min axis == released pi_min sweep: pass")
 
-    # alpha axis (NEW)
+    # alpha axis
     rows = []
     for alpha in ALPHA_AXIS:
         cells = [run_cell(*d, alpha=alpha, pi_min=PIMIN0, delta=DELTA0)
@@ -206,7 +207,7 @@ def main():
               f"U_LCB={row['median_u_lcb']} w_r={row['median_width_r']}")
     out["axes"]["alpha"] = rows
 
-    # delta axis (NEW)
+    # delta axis
     rows = []
     for delta in DELTA_AXIS:
         cells = [run_cell(*d, alpha=ALPHA0, pi_min=PIMIN0, delta=delta)
@@ -231,7 +232,7 @@ def main():
     print("[assert] anchor cell identical across P1 axes: pass")
     del p1_data
 
-    # m axis (= A9 replication, A9's own lambda grids)
+    # m axis (replicates the grid-size sweep with its lambda grids)
     rows = []
     for m_l in MLAMBDA_AXIS:
         Lambda = np.array(sorted(np.linspace(
@@ -256,10 +257,10 @@ def main():
         assert row["n_feasible"] == ref["n_feasible"], (row, ref)
         assert row["n_vio_joint"] == ref["n_vio_joint"], (row, ref)
     out["asserts"]["A9_m"] = "pass"
-    print("[assert] m axis == A9: pass")
+    print("[assert] m axis == released grid-size sweep: pass")
 
-    # ---- Protocol P2 (A8-style): n_tune = n_test = 5000 -------------------
-    # n_cert axis (= A8 replication)
+    # ---- Protocol P2: n_tune = n_test = 5000 --------------------------------
+    # n_cert axis (replicates the n_cert sweep)
     rows = []
     for n_cert in NCERT_AXIS:
         cells = []
@@ -281,9 +282,9 @@ def main():
         assert row["n_feasible"] == ref["n_feasible"], (row, ref)
         assert row["n_vio_joint"] == ref["n_vio_joint"], (row, ref)
     out["asserts"]["A8_n_cert"] = "pass"
-    print("[assert] n_cert axis == A8: pass")
+    print("[assert] n_cert axis == released n_cert sweep: pass")
 
-    # Small-calibration block (NEW): n_cert < 1001, 30 seeds, two budgets
+    # Small-calibration block: n_cert < 1001, 30 seeds, two budgets
     for n_cert in SMALL_N:
         seed_data = []
         for i in range(N_SEEDS_SMALL):
@@ -315,8 +316,8 @@ def main():
                         "n_seeds_small_n": N_SEEDS_SMALL},
         "seeds": "split_seed = 42 + i",
         "metric_width_r": "(EB - Z_bar) / p_hat at the deployed pair",
-        "note": "pi_min/m/n_cert axes replicate A1/A9/A8 seed-for-seed; "
-                "counts asserted equal to the committed JSONs above.",
+        "note": "pi_min/m/n_cert axes replicate the released sweeps seed-for-seed; "
+                "counts asserted equal to their result files.",
     }
 
     out_file = OUT / "A18_imagenet_resnet50v2_sensitivity_star.json"

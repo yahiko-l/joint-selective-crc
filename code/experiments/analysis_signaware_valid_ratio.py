@@ -1,8 +1,8 @@
-"""Sign-aware valid-vs-valid per-pair risk-UCB comparison (revision).
+"""Sign-aware valid-vs-valid per-pair risk-UCB comparison.
 
-Reformulates the matched per-pair tightness comparison so that BOTH methods are
-standalone (1-delta) grid-valid upper bounds on R_sel, with sign-aware
-denominator handling. For each grid pair, let U = z_bar + r be the method's
+Matched per-pair tightness comparison in which BOTH methods are standalone
+(1-delta) grid-valid upper bounds on R_sel, with sign-aware denominator
+handling. For each grid pair, let U = z_bar + r be the method's
 upper bound on E[Z] = p_acc * (R_sel - alpha), and [p-, p+] a TWO-SIDED
 Clopper--Pearson confidence interval for p_acc. The standalone risk UCB is
 
@@ -35,17 +35,18 @@ delta/(16m); total 3*delta/16 over the grid, still grid-valid) is reported in
 the JSON only.
 
 Three blocks, one run:
-  1. HEADLINE  -- D_5baseline protocol (ImageNet RN50/101/152 V2, n_cert=33000,
-     20 seeds 42..61, m=35): pooled per-(seed,pair) median excess ratios
-     Ours / sign-aware Hoeffding--CP, negative-numerator fractions, edge-case
-     ledger (min s, s=0/s=1 cells, p-=0 cells, clipping check), per-seed data.
+  1. HEADLINE  -- certified-decision protocol of Table 8 (ImageNet
+     RN50/101/152 V2, n_cert=33000, 20 seeds 42..61, m=35): pooled
+     per-(seed,pair) median excess ratios Ours / sign-aware Hoeffding--CP,
+     negative-numerator fractions, edge-case ledger (min s, s=0/s=1 cells,
+     p-=0 cells, clipping check), per-seed data.
   2. FIG 7     -- same runs, per-pair frontier dump in the exact schema of
      `analysis_cert_frontier.py`, with ucb_rsel replaced by the sign-aware
      valid UCBs (matched allocation) for Ours and the comparator. The textbook
-     A(pi_min) expression and ALL certification flags are byte-identical to
-     the original script (certification is decided by EB <= 0 and
-     p_LCB >= pi_min, unchanged).
-  3. FIG 8(b)  -- A1 sweep protocol (RN50, n_cert=25000, 10 seeds 42..51):
+     A(pi_min) expression and ALL certification flags are identical to
+     `analysis_cert_frontier.py` (certification is decided by EB <= 0 and
+     p_LCB >= pi_min).
+  3. FIG 8(b)  -- pi_min-sweep protocol (RN50, n_cert=25000, 10 seeds 42..51):
      per-pi_min low-acceptance-subset (p_hat <= 2*pi_min) medians of the
      sign-aware matched excess ratio.
 
@@ -94,9 +95,9 @@ N_CLASSES = 1000
 LAMBDA = np.array([0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2], dtype=np.float64)
 T = np.array([0.5, 0.6, 0.7, 0.8, 0.9], dtype=np.float64)
 
-# Block 1 + 2: D_5baseline / frontier protocol.
+# Blocks 1 and 2: certified-decision and frontier protocol.
 D_NCERT, D_NTUNE, D_NTEST, D_SEEDS = 33000, 8500, 8500, [42 + i for i in range(20)]
-# Block 3: A1 pi_min sweep protocol.
+# Block 3: pi_min-sweep protocol of Fig. 8(b).
 A1_NCERT, A1_NTUNE, A1_NTEST, A1_SEEDS = 25000, 12500, 12500, [42 + i for i in range(10)]
 A1_PI_MIN_VALUES = [0.005, 0.01, 0.02, 0.05, 0.10]
 
@@ -125,7 +126,8 @@ def cp_upper(s: np.ndarray, n: int, tail: float) -> np.ndarray:
 
 
 def build_grid(logits_full, labels_full, split_seed, n_cert, n_tune, n_test):
-    """Byte-for-byte the D_5baseline / frontier grid construction."""
+    """ImageNet (lambda, tau) grid on the certification split, as in the
+    certified-decision and frontier analyses."""
     rng = np.random.default_rng(split_seed)
     subset = rng.choice(len(labels_full), size=n_cert + n_tune + n_test, replace=False)
     Y_all = labels_full[subset]
@@ -199,7 +201,7 @@ def seed_quantities(L_grid, A_grid, v_grid, *, pi_min):
     exc_comp_m = sa_excess(z_bar + r_hoeffding, pl_m, pu_m)
     exc_ours_n = sa_excess(z_bar + eta_native, pl_n, pu_n)
 
-    # Display-normalised reproductions, byte-identical to the published pipeline.
+    # Display-normalised widths of the certified-decision analysis.
     ours_display = eta_native / p_hat_safe                  # ours_r_margin
     comp_display = baseline_a_range_hoeffding_plcb(
         L_grid, A_grid, alpha=ALPHA, delta=DELTA, B=B)
@@ -242,7 +244,7 @@ def headline_block(per_seed):
     r_native, _ = pooled_median_ratio(
         [q["margin_ours_native"] for q in per_seed],
         [q["margin_comp_matched"] for q in per_seed])
-    # Display reproduction under the D-script inclusion rule (ours > 0, comp > 0).
+    # Display-form ratio over pairs with both widths positive.
     disp_pairs = []
     for q in per_seed:
         o, c = q["ours_display"], q["comp_display"]
@@ -433,8 +435,7 @@ def main():
     e_out = {
         "experiment": "analysis_signaware_valid_ratio",
         "purpose": ("Sign-aware valid-vs-valid per-pair risk-UCB excess "
-                    "comparison introduced in the revision; replaces the "
-                    "display-normalised matched-valid width ratio."),
+                    "comparison."),
         "definition": {
             "object": "UCB_sel - Rhat_sel (upper-UCB excess), both methods",
             "sign_rule": "U>=0 -> divide by CP lower endpoint; U<0 -> divide by "
@@ -493,8 +494,8 @@ def main():
             del q["_L"], q["_A"], q["res"]
         del logits_full
 
-    # ---- Block 3: Fig 8(b) sweep (A1 protocol, RN50 only) ----
-    print("[signaware] Fig 8(b) sweep (A1 protocol)", flush=True)
+    # ---- Block 3: Fig 8(b) sweep (RN50 only) ----
+    print("[signaware] Fig 8(b) sweep", flush=True)
     logits_full = np.load(MODELS["ResNet-50 V2"]).astype(np.float64)
     sweep_seed_q = []
     for seed in A1_SEEDS:

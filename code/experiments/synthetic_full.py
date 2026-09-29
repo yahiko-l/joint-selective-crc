@@ -1,22 +1,15 @@
-"""B1 full PC1 validity sweep — 20 seeds × 27 configs.
+"""Synthetic joint-validity sweep: 27 configurations × 20 seeds.
 
-EXPERIMENT_PLAN.md M1 spec:
-  Configs:
-    n ∈ {1000, 5000, 25000}
-    m ∈ {10, 35, 100}
-    π_min ∈ {0.05, 0.10, 0.30}    (we use one α per config since each contributes
-                                    a separate VIO_R verification)
-    α ∈ {0.05, 0.10, 0.20}
-  Seeds: 20 per config
-  Total: 3·3·3·3 = 81 ... but per the plan we use 27 = 3 × 9 = 3 × (3 × 3) — we
-  cross-product over (n, m, π_min) and vary α for some configs to triangulate.
+Configurations are the cross product n_cert ∈ {1000, 5000, 25000},
+m ∈ {10, 35, 100}, π_min ∈ {0.05, 0.10, 0.30}, all at α = 0.30, δ = 0.10, with
+Beta(2, 5) losses (mean 0.286) and a uniform acceptance score. Each run
+certifies on the first n_cert of 50,000 draws and checks the selected pair and
+every certified pair against the remaining draws.
 
-For practical implementation we use 3 × 3 × 3 = 27 unique (n, m, π_min) configs,
-each at a single α = 0.10 (or auto-adjusted to be slightly above the true R_sel).
+Reports per configuration the risk, acceptance and joint violation rates among
+feasible runs.
 
-Each run produces VIO_R, VIO_P, VIO_U, VIO_JOINT empirical rates over 20 seeds.
-
-Output: results/synthetic_full/pc1_summary.json + per_config CSVs.
+Output: <output-dir>/pc1_summary.json and pc1_summary.csv.
 """
 
 from __future__ import annotations
@@ -135,16 +128,15 @@ def main(output_dir: Path, n_seeds: int = 20):
         [10, 35, 100],            # m
         [0.05, 0.10, 0.30],       # pi_min
     ))
-    # Single α per config to keep this 27-config sweep within time budget
     alpha = 0.30  # Beta(2,5) has mean 0.286; α=0.30 gives narrow margin
     delta = 0.10
 
     all_results = []
-    print(f"[B1 full] running {len(configs)} configs × {n_seeds} seeds = {len(configs)*n_seeds} runs")
-    print(f"          α = {alpha}, δ = {delta}, loss = Beta(2, 5)")
+    print(f"[synthetic] running {len(configs)} configs × {n_seeds} seeds = {len(configs)*n_seeds} runs")
+    print(f"            α = {alpha}, δ = {delta}, loss = Beta(2, 5)")
 
     for cfg_idx, (n_cert, m, pi_min) in enumerate(configs):
-        print(f"\n[B1 cfg {cfg_idx+1}/{len(configs)}] n_cert={n_cert}, m={m}, π_min={pi_min}")
+        print(f"\n[synthetic cfg {cfg_idx+1}/{len(configs)}] n_cert={n_cert}, m={m}, π_min={pi_min}")
         per_seed = []
         for seed in range(42, 42 + n_seeds):
             try:
@@ -176,12 +168,12 @@ def main(output_dir: Path, n_seeds: int = 20):
         else:
             ci_lo = ci_hi = None
 
-        # PC1 PASS condition: vio_joint within binomial 95% CI of δ (Wald around δ ± 1.96·sqrt(δ(1-δ)/n_feasible))
+        # PASS if vio_joint <= δ + 1.96·sqrt(δ(1-δ)/n_feasible) (upper Wald limit around δ)
         if n_feasible > 0 and vio_joint is not None:
             delta_se = float(np.sqrt(delta * (1 - delta) / n_feasible))
             pc1_pass = vio_joint <= delta + 1.96 * delta_se
         else:
-            pc1_pass = None  # all infeasible — algorithm returned INFEASIBLE for all 20 seeds
+            pc1_pass = None  # INFEASIBLE on every seed
 
         cfg_summary = {
             "cfg_idx": cfg_idx,
@@ -206,17 +198,17 @@ def main(output_dir: Path, n_seeds: int = 20):
         }
         all_results.append(cfg_summary)
         if pc1_pass is None:
-            verdict_str = "ALL INFEASIBLE (CASE A)"
+            verdict_str = "ALL INFEASIBLE"
         elif pc1_pass:
             verdict_str = f"PASS (vio_joint={vio_joint:.4f} ≤ {delta + 1.96 * delta_se:.4f})"
         else:
             verdict_str = f"FAIL (vio_joint={vio_joint:.4f} > {delta + 1.96 * delta_se:.4f})"
-        print(f"    feasible={n_feasible}/{n_runs}, vio_joint={vio_joint}, PC1: {verdict_str}")
+        print(f"    feasible={n_feasible}/{n_runs}, vio_joint={vio_joint}, verdict: {verdict_str}")
 
     # Save aggregate
     summary_path = output_dir / "pc1_summary.json"
     summary_path.write_text(json.dumps({
-        "experiment": "B1 PC1 full validity sweep",
+        "experiment": "synthetic joint-validity sweep",
         "n_configs": len(configs),
         "n_seeds_per_config": n_seeds,
         "alpha": alpha,
@@ -248,13 +240,12 @@ def main(output_dir: Path, n_seeds: int = 20):
                 cfg["n_required_n0"], cfg["pc1_pass"],
             ])
 
-    print(f"\n[B1 full] wrote {summary_path}")
-    print(f"[B1 full] wrote {csv_path}")
-    # Print final PC1 summary
+    print(f"\n[synthetic] wrote {summary_path}")
+    print(f"[synthetic] wrote {csv_path}")
     n_pass = sum(1 for c in all_results if c["pc1_pass"] is True)
     n_fail = sum(1 for c in all_results if c["pc1_pass"] is False)
     n_undef = sum(1 for c in all_results if c["pc1_pass"] is None)
-    print(f"\n[B1 PC1 final summary] PASS={n_pass}/{len(configs)}, FAIL={n_fail}/{len(configs)}, UNDEF={n_undef}/{len(configs)} (all INFEASIBLE)")
+    print(f"\n[synthetic summary] PASS={n_pass}/{len(configs)}, FAIL={n_fail}/{len(configs)}, UNDEF={n_undef}/{len(configs)} (all INFEASIBLE)")
 
 
 if __name__ == "__main__":

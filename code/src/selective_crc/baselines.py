@@ -1,23 +1,13 @@
-"""Baselines for comparison with Algorithm 1.
+"""Per-pair comparators for Algorithm 1.
 
-Per EXPERIMENT_PLAN.md §B2 / B4, we compare against:
-
-- **Baseline A (Range-only Hoeffding moment bound)**: a UCB on E[Z] = E[A(L-α)]
-  using Hoeffding's inequality (no variance adaptation). The implied R_sel UCB
-  margin is `(B/π_min) * sqrt(log(2m/δ)/(2n))`. Used to demonstrate the
-  variance-adaptive advantage of our method at low π_acc.
-
-- **Baseline B (Accepted-sample Bernstein + Bonferroni)**: applies Bernstein on
-  the loss L restricted to accepted samples (random subset of size s = Σ A_i),
-  union-bounded over m candidates at δ/(3m), plus a separate Bernstein LCB on
-  E[A] at δ/(3m). Per-pair rate matches ours `O(B·√(log m/(n·p_acc)))` but
-  does NOT provide the joint certificate (requires manual coupling of two
-  Bernstein bounds + no canonical utility selection rule).
-
-These are intentionally simplified for the per-pair UCB comparison in
-experiments B2/B4. `baseline_b_accepted_bernstein_radius` returns only the
-per-pair *radius* (margin width) used in PC2 width comparison; the full
-Baseline B feasibility coupling is in `baseline_b_full_certificate`.
+- Baseline A (range-only Hoeffding): Hoeffding radius on E[Z] = E[A(L - α)],
+  no variance adaptation, divided by π_min, by the empirical acceptance, or by
+  a Clopper-Pearson lower bound on p_acc.
+- Baseline B (accepted-sample Bernstein): empirical-Bernstein radius on the
+  losses of the s = Σ A_i accepted samples, Bonferroni over the m pairs. Its
+  per-pair rate matches Algorithm 1's, but it provides no joint certificate.
+- WSR betting and fixed-bet product e-value UCBs on E[Z].
+- Simplified ports of SCRC-T and SCoRE.
 """
 
 from __future__ import annotations
@@ -34,15 +24,14 @@ def baseline_a_range_hoeffding_pacc(
     delta: float,
     B: float,
 ) -> np.ndarray:
-    """Baseline-A / p_acc (stronger comparator).
+    """Baseline A with the empirical acceptance p_hat = s/n as denominator.
 
-    Same range-only Hoeffding radius on E[Z = A(L-α)] as `baseline_a_range_hoeffding`,
-    but post-divided by the *empirical acceptance* p_hat (= s/n) per pair instead
-    of the worst-case π_min lower bound. This is what a knowledgeable but slightly
-    optimistic reviewer would compute. NOT a valid (1−δ) UCB on R_sel (no LCB on
-    p_acc) — informational comparator only.
+    Same range-only Hoeffding radius on E[Z = A(L-α)] as
+    `baseline_a_range_hoeffding`, divided per pair by p_hat instead of π_min.
+    Without a lower bound on p_acc this is not a valid (1-δ) UCB on R_sel;
+    informational comparator only.
 
-    Returns the per-pair R_sel margin radius.
+    Returns the per-pair R_sel radius (inf where p_hat = 0).
     """
     L = np.asarray(L, dtype=np.float64)
     A = np.asarray(A, dtype=np.float64)
@@ -61,15 +50,15 @@ def baseline_a_range_hoeffding_plcb(
     delta: float,
     B: float,
 ) -> np.ndarray:
-    """Baseline-A / p_LCB (valid stronger comparator).
+    """Baseline A with a Clopper-Pearson lower bound on p_acc as denominator.
 
-    Same range-only Hoeffding radius on E[Z] divided by a Clopper-Pearson lower
-    bound on p_acc at δ/(2m) (using half the budget for the p_acc LCB and half
-    for the Z UCB, in the spirit of Baseline-B's δ-split). This IS a valid
-    (1−δ) UCB on R_sel per pair — strictly tighter than the worst-case π_min
-    Baseline-A but still range-only on the numerator.
+    Range-only Hoeffding radius on E[Z] at δ/(2m), divided by the
+    Clopper-Pearson LCB on p_acc at δ/(2m). Added to the empirical selective
+    risk it gives a valid, conservative per-pair UCB on R_sel: since
+    p_LCB <= s/n, the radius dominates the Hoeffding radius of the s accepted
+    losses.
 
-    Returns the per-pair R_sel margin radius (NaN where p_LCB ≤ 0 or s = 0).
+    Returns the per-pair R_sel radius (NaN where p_LCB = 0).
     """
     L = np.asarray(L, dtype=np.float64)
     A = np.asarray(A, dtype=np.float64)
@@ -91,45 +80,39 @@ def baseline_a_range_hoeffding(
     delta: float,
     B: float,
 ) -> np.ndarray:
-    """Baseline A: range-only Hoeffding UCB on E[Z], divided by π_min.
+    """Baseline A: range-only Hoeffding radius on E[Z], divided by π_min.
 
-    UCB on E[Z = A(L-α)]: `mean(Z) + B * sqrt(log(2m/δ)/(2n))`.
-    Implied UCB on R_sel = E[Z]/p_acc, divided by lower bound π_min for p_acc:
-      UCB_R = UCB_Z / π_min + α (after rearrangement)
-
-    For per-pair WIDTH comparison, we return the implied R_sel UCB margin:
-      width = (UCB on E[Z]) / π_min
+    radius = B * sqrt(log(2m/δ) / (2n)) / π_min, the same for every pair.
+    Added to the empirical selective risk it gives the π_min-saturated
+    Hoeffding-CRC selective bound A(π_min).
 
     Parameters
     ----------
     L, A : np.ndarray, shape (n_cert, m)
         Per-sample losses and acceptances.
     alpha : float
-        Target risk (used to center Z; appears in the UCB as a shift).
+        Target risk (not used by the radius).
     pi_min : float
-        Acceptance lower bound used for the post-division.
+        Acceptance floor used as the denominator.
     delta : float
-        Failure probability (m-grid Bonferroni at δ/m).
+        Failure probability (Bonferroni over the grid at δ/m).
     B : float
         Loss range upper bound.
 
     Returns
     -------
     np.ndarray, shape (m,)
-        Per-pair R_sel UCB *margin* (i.e., distance from α; this is the
-        "tightness" metric used in PC2 comparison).
+        Per-pair R_sel radius.
     """
     L = np.asarray(L, dtype=np.float64)
     A = np.asarray(A, dtype=np.float64)
     n_cert, m = L.shape
 
     delta_per = delta / m  # Bonferroni
-    # Range-only Hoeffding: range of Z = A(L-α) is max(α, B-α) ≤ B; use B as range bound.
+    # Z = A(L - α) lies in [-α, B - α], an interval of width B.
     hoeffding_radius_Z = B * np.sqrt(np.log(2.0 / delta_per) / (2.0 * n_cert))
 
-    # Implied UCB on R_sel - α: (mean_Z + radius_Z) / π_min
-    # (Plus α if comparing absolute level; we return the *margin* from α.)
-    margin = hoeffding_radius_Z / pi_min  # divide by lower bound for conservative UCB
+    margin = hoeffding_radius_Z / pi_min
     return np.full(m, margin, dtype=np.float64)
 
 
@@ -143,13 +126,8 @@ def baseline_b_full_certificate(
 ) -> dict:
     """Full Baseline B with feasibility mask (R_sel UCB + p_acc LCB couple).
 
-    NOTE — NOT CALLED BY ANY EXPERIMENT: this function captures the conceptual
-    "full Baseline B" coupling described in EXPERIMENT_PLAN.md §B2 but is not
-    invoked by `experiments/`. Per-pair width comparison uses
-    `baseline_b_accepted_bernstein` instead; the joint-certificate question
-    that this function would address is answered structurally (Baseline B has
-    no canonical joint certificate without the kind of margin oracle our
-    Algorithm 1 provides). Retained as a reference implementation.
+    Not called by any experiment; the per-pair width comparisons use
+    `baseline_b_accepted_bernstein`.
 
     For each (λ, τ):
       - δ split: δ/(3m) for accepted-sample Bernstein on L, δ/(3m) for
@@ -207,26 +185,18 @@ def baseline_b_accepted_bernstein(
     delta: float,
     B: float,
 ) -> np.ndarray:
-    """Baseline B: Bernstein on L restricted to accepted samples, with
-    Bonferroni at δ/(3m) per pair. No joint certificate.
+    """Baseline B: empirical-Bernstein radius on the accepted-sample losses.
 
-    For each (λ, τ):
-      s = Σ A
-      L_accepted = {L_i : A_i = 1}
-      Bernstein UCB on E[L | A=1] from s i.i.d. samples (effective sample size):
-        mean(L_accepted) + sqrt(2 * sample_var(L_accepted) * log(3/δ_per) / s)
-                        + 7 * B * log(3/δ_per) / (3 * (s - 1))   [if s >= 2]
-      (Returns NaN if s < 2.)
+    For each (λ, τ), with s = Σ A accepted samples and losses L_acc,
+        radius = sqrt(2 * var(L_acc) * log(3m/δ) / s) + 7 * B * log(3m/δ) / (3 * (s - 1)),
+    a Bonferroni allocation over the m pairs. Added to mean(L_acc), the
+    empirical selective risk, it is a per-pair UCB on E[L | A = 1]; there is
+    no joint certificate.
 
     Returns
     -------
     np.ndarray, shape (m,)
-        Per-pair R_sel UCB *margin* (distance from α). NaN where s < 2.
-
-    Notes
-    -----
-    This is the *strongest* simple per-pair baseline, matching our leading rate.
-    Our structural delta is the joint certificate, NOT per-pair tightness.
+        Per-pair radius around the empirical selective risk; NaN where s < 2.
     """
     L = np.asarray(L, dtype=np.float64)
     A = np.asarray(A, dtype=np.float64)
@@ -247,15 +217,12 @@ def baseline_b_accepted_bernstein(
             np.sqrt(2.0 * var_L * np.log(3.0 / delta_per) / s)
             + 7.0 * B * np.log(3.0 / delta_per) / (3.0 * (s - 1))
         )
-        widths[k] = bernstein_radius  # margin from mean_L, which is the empirical R_sel
-        # (Caller can add mean_L to recover absolute UCB; we return the radius for
-        # comparison with baseline_a_range_hoeffding which also returns a radius.)
+        widths[k] = bernstein_radius
     return widths
 
 
 # =============================================================================
-# Beast-mode additions (Phase 9 Sub-order D, 2026-05-26):
-# WSR betting confidence sequence + e-BH product-e-value baselines.
+# Betting and e-value UCBs on E[Z].
 # =============================================================================
 
 
@@ -265,46 +232,32 @@ def wsr_betting_ucb(
     range_b: float,
     c_clip: float = 0.5,
 ) -> np.ndarray:
-    """WSR (Waudby-Smith & Ramdas 2024) betting confidence sequence UCB on E[Z].
+    """Betting UCB on E[Z] after Waudby-Smith & Ramdas (2024, arXiv 2010.09686).
 
-    Per-pair one-sided UCB on `E[Z(λ,τ)]` at confidence level `1 - delta_prime`,
-    using the predictable-mixture betting CS form (PrPl-MS, Algorithm 1 of
-    arXiv 2010.09686 / Theorem 4). For `Z ∈ [-range_b, +range_b]`, we shift
-    `Y = Z + range_b` to enforce `Y ∈ [0, 2·range_b]`, run WSR on `Y`, and
-    return `UCB(E[Z]) = UCB(E[Y]) - range_b`.
-
-    Algorithm:
-    - Predictable bet schedule: `λ_t = min(c_clip / (2·range_b),
-       sqrt(2 · log(1/δ') / (n · σ̂²_{t-1})))` (capped so capital stays positive).
-    - Capital process for null H_0(m): E[Y] ≥ m:
-       `K_n(m) = ∏_{t=1}^n (1 - λ_t · (Y_t - m))`.
-    - Under H_0(m), K_n is a non-negative supermartingale starting at 1
-      (Waudby-Smith & Ramdas 2024 Lemma 3.1). By Ville's inequality,
-       `P(K_n > 1/δ' | H_0(m)) ≤ δ'`.
-    - UCB: smallest m such that `K_n(m) > 1/δ'` (binary search).
+    Per-pair one-sided UCB on `E[Z(λ,τ)]` at level `1 - delta_prime`. Z in
+    [-range_b, range_b] is shifted to `Y = Z + range_b` in [0, 2·range_b]. For a
+    candidate mean m the capital `K_n(m) = ∏_t (1 - λ_t · (Y_t - m))`, with the
+    predictable bets `λ_t = min(c_clip / (2·range_b),
+    sqrt(2 · log(1/δ') / (n · σ̂²_{t-1})))`, is a non-negative supermartingale
+    under E[Y] ≥ m, so by Ville's inequality the UCB on E[Y] is the smallest m
+    with `K_n(m) > 1/δ'` (found by bisection); it is shifted back by range_b.
+    A simplified port; the `confseq` package implements the full method.
 
     Parameters
     ----------
     Z : np.ndarray, shape (n, m)
         Per-sample contributions across n samples and m grid points.
     delta_prime : float
-        One-sided confidence level (per pair; caller does Bonferroni externally).
+        One-sided level per pair; the caller splits δ over the grid.
     range_b : float
         Range bound: assumes `Z[i, k] ∈ [-range_b, range_b]`.
     c_clip : float
-        Clipping constant for predictable bet (default 0.5; controls bet
-        aggressiveness).
+        Bet cap in (0, 1) (default 0.5).
 
     Returns
     -------
     np.ndarray, shape (m,)
         Per-pair UCB on `E[Z(λ_k, τ_k)]`.
-
-    Notes
-    -----
-    This is a simplified port of WSR PrPl-MS. For the canonical implementation
-    with all bells and whistles (anytime-valid CS, optimal hyperparameters),
-    use the `confseq` Python package (Howard et al. 2021).
     """
     Z = np.asarray(Z, dtype=np.float64)
     n, m = Z.shape
@@ -330,7 +283,7 @@ def wsr_betting_ucb(
         # Mean prior at t=1: range center; otherwise (Σ_{s<t} y_s) / (t-1)
         denom = np.maximum(t_arr - 1.0, 1.0)
         mu_prev = np.concatenate(([range_Y / 2.0], cum_y[:-1] / denom[1:]))
-        # Variance prior at t=1: range²/4 (var of uniform[0, range_Y]); otherwise
+        # Variance prior at t=1: range_Y²/4, the largest variance on [0, range_Y]; otherwise
         # ( Σ_{s<t} y_s² / (t-1) ) − μ_prev²
         var_prev = np.concatenate((
             [range_Y ** 2 / 4.0],
@@ -350,13 +303,9 @@ def wsr_betting_ucb(
             terms = np.maximum(terms, 1e-12)
             return np.sum(np.log(terms))
 
-        # K is monotone increasing in m_test (each factor is +λ_t · (m_test - y_t))
-        # so binary search:
-        # - lo: K(lo) ≤ 1/δ' (don't reject H_0: E[Y] ≥ lo) → lo bound
-        # - hi: K(hi) > 1/δ' (reject) → hi bound
-        # Bracket: search lo at empirical mean (likely K < 1/δ'); hi at range_Y
+        # K is increasing in m_test: bisect on [0, range_Y] for the smallest
+        # rejected m_test (K > 1/δ'); hi stays at range_Y if none is rejected.
         lo, hi = 0.0, range_Y
-        # Ensure hi is high enough
         for _ in range(60):
             mid = 0.5 * (lo + hi)
             if log_capital_at(mid) > log_target:
@@ -374,35 +323,22 @@ def ebh_product_evalue_ucb(
     delta: float,
     range_b: float,
 ) -> np.ndarray:
-    """e-BH (SCoRE-style) baseline: per-pair UCB on E[Z] via product e-values + Bonferroni grid correction.
+    """Fixed-bet product e-value UCB on E[Z] with a Bonferroni grid correction.
 
-    This is a simplified port of the SCoRE (Bai & Jin 2026, arXiv 2603.24704) e-value
-    framework, combined with e-BH (Wang & Ramdas 2022, arXiv 2009.02824) for grid
-    multiplicity correction. Specifically, for each (λ, τ) pair we use a fixed-bet
-    product e-value test for `H_0: E[Z(λ,τ)] = m_test`:
-
-    `e_n(m_test) = ∏_{t=1}^n (1 + η · (m_test - Z_t))` where η is chosen to maximize
-    expected growth under H_1: E[Z] ≪ m_test. For bounded |Z| ≤ B with H_0
-    expecting E[Z] = m_test, the optimal η is approximately `η* ≈ 1 / (range_b + |m_test|)`
-    (clipped to avoid negativity). We use the SIMPLIFIED form: fixed `η = 1/(2·range_b)`
-    across all pairs and steps (no variance adaptation, intentionally simpler than WSR).
-
-    Per-pair UCB at level `δ' = δ / m` (Bonferroni grid; stricter than e-BH's
-    sorted thresholds but cleanly comparable):
-    UCB = inf{m_test : log e_n(m_test) > log(1/δ')}.
-
-    Differences from WSR:
-    - WSR: predictable adaptive bet `λ_t` based on running variance estimates.
-    - e-BH: fixed bet `η`; pure product e-value structure (no variance bridging).
-    - WSR uses δ' directly per pair (called externally with δ' = δ/(16m) per Algorithm 1).
-    - e-BH applies Bonferroni-grid δ' = δ/m as a conservative proxy for e-BH sorted thresholds.
+    For each pair, `e_n(m_test) = ∏_t (1 + η · (m_test - Z_t))` with the fixed
+    bet `η = 1/(2·range_b)` is a non-negative supermartingale under
+    E[Z] ≥ m_test. The UCB is `inf{m_test : log e_n(m_test) > log(m/δ)}`, i.e.
+    per-pair level δ/m, a Bonferroni stand-in for the e-BH thresholds of
+    Wang & Ramdas (2022). Unlike `wsr_betting_ucb`, the bet does not adapt to
+    the variance.
 
     Parameters
     ----------
     Z : np.ndarray, shape (n, m)
     delta : float
-        TOTAL grid failure budget (per-pair level becomes δ/m).
+        Total failure budget over the grid; the per-pair level is δ/m.
     range_b : float
+        Range bound: assumes `Z[i, k] ∈ [-range_b, range_b]`.
 
     Returns
     -------
@@ -442,11 +378,9 @@ def ebh_product_evalue_ucb(
 
 
 # =============================================================================
-# Phase 9 Sub-order E: Prior-work simplified ports for empirical head-to-head.
-# These are SIMPLIFIED faithful-spirit ports, not exact reproductions; they
-# capture the structural difference vs OURS rather than the published algorithm
-# verbatim. See per-function docstrings for the exact mapping to the cited
-# paper's algorithm.
+# Simplified ports of SCRC-T and SCoRE for the per-pair comparison. They keep
+# the structural choice of each method rather than reproduce the published
+# algorithm verbatim; each docstring gives the mapping.
 # =============================================================================
 
 

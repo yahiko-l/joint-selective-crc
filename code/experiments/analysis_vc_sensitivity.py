@@ -1,4 +1,4 @@
-"""Utility-parameter (v, c) sensitivity analysis (revision).
+"""Utility-parameter (v, c) sensitivity analysis.
 
 Blocks (all on the frozen headline protocols; loaders and splits are
 byte-identical to analysis_joint_baseline.py):

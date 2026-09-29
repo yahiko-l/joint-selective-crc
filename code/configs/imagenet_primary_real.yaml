@@ -1,19 +1,18 @@
-# B2 PC2a ImageNet PRIMARY — REAL ImageNet val + ResNet-50 V2 logits.
-# Drives the headline ImageNet width and certified-decision comparisons.
+# ImageNet val, ResNet-50 V2 logits: held-out validity run of Algorithm 1 with the
+# per-pair baseline widths.
 #
 # Reproduce:
 #   1. Regenerate the per-image logits/labels with
 #      `python experiments/imagenet_compute_logits.py` (needs the public ImageNet-1k
-#      val set + torchvision ResNet-50 V2 weights; not bundled, see README "Full pipeline").
+#      val set + torchvision ResNet-50 V2 weights; not bundled, see README
+#      "Regenerating the per-image caches").
 #      Point the two paths below at the produced .npy files.
 #   2. `python experiments/imagenet_scale.py --config configs/imagenet_primary_real.yaml`
 #      -> writes results/imagenet_primary_real/results.json (30 seeds).
-# split_seed = 42 + i, so the run is deterministic and the first 10 seeds reproduce the
-# earlier 10-seed run exactly.
+# split_seed = 42 + i, so the run is deterministic.
 
 experiment:
   name: imagenet_primary_b2_real
-  block: B2
 
 data:
   dataset: imagenet_real
@@ -39,8 +38,7 @@ parameters:
 
 seeds:
   master: 42
-  n_seeds: 30   # 30 seeds back the held-out validity distribution and the re-split
-                # effect sizes; the first 10 reproduce the earlier 10-seed run exactly.
+  n_seeds: 30   # 30 seeds back the held-out validity distribution (Fig. 6).
 
 output:
   results_dir: results/imagenet_primary_real/

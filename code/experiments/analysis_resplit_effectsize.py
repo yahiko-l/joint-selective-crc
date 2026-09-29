@@ -1,9 +1,8 @@
-"""Re-split effect sizes and distribution-free CIs for the headline comparisons (revision).
+"""Re-split effect sizes and distribution-free CIs for the headline comparisons (Table 9).
 
-Replaces the resplit Wilcoxon significance table (former Table 8 content, B14): the N
-random calibration/test re-splits re-partition a single fixed evaluation pool, so they
-are randomization replicates conditional on that pool, not independent samples from the
-data distribution, and with saturated sign patterns an exact signed-rank p-value is a
+The N random calibration/test re-splits re-partition a single fixed evaluation pool, so
+they are randomization replicates conditional on that pool, not independent samples from
+the data distribution, and with saturated sign patterns an exact signed-rank p-value is a
 function of the re-split count alone. This analysis therefore reports, per comparison,
 
   * the seed-level median (within-re-split median over grid pairs, then the median
@@ -16,21 +15,20 @@ function of the re-split count alone. This analysis therefore reports, per compa
     least 0.95 (a finite-sample lower bound on coverage; ties can only increase it),
   * the sign-consistency count,
 
-and attaches NO p-values. All inputs are existing artifacts; no new experiments.
+and attaches NO p-values. All inputs are existing result files.
 
 Comparisons:
-  1. ImageNet sign-aware valid UCB-excess ratio Ours / A(CP+-), matched allocation
-     (sign-aware reformulation), RN50/101/152 V2, 20 re-splits x 35 pairs, from
-     E_signaware_valid_ratio.json; all-pairs rows plus the RN50 low-acceptance subset
-     (p_hat <= 2 pi_min). Difference scale (comp - ours) reported alongside for the
-     Hodges--Lehmann paired-difference request (revision).
+  1. ImageNet sign-aware valid UCB-excess ratio Ours / A(CP+-), matched allocation,
+     RN50/101/152 V2, 20 re-splits x 35 pairs, from E_signaware_valid_ratio.json;
+     all-pairs rows plus the RN50 low-acceptance subset (p_hat <= 2 pi_min). The
+     difference scale (comp - ours) is reported alongside.
   2. COCO certified-acceptance gap over the Hoeffding--CRC selective baseline
      (delta_p_ours_hoeff, percentage points), g = softmax (30 re-splits) and
      g = entropy (20 re-splits), from G_coco_pixacc_*_robust.json. PRIMARY convention
      (all-split, operational): a re-split on which the certifier abstains contributes a
      zero gap; this is an evaluation convention, not a certified value. The
      feasibility-conditional summaries are recorded as secondary fields.
-  3. Section 6 comparator disclosure Ours/B (nominal per-pair radii), RN50/101/152 V2,
+  3. Section 6 comparison Ours/B (nominal per-pair radii), RN50/101/152 V2,
      20 re-splits, from D_5baseline_multimodel.json; seed-level ratio statistics
      accompanying the published pooled per-pair medians.
 
@@ -111,7 +109,7 @@ def summarize(x: np.ndarray, sign: str) -> dict:
 def main() -> int:
     out = {
         "experiment": "H_resplit_effectsize",
-        "purpose": "Re-split effect sizes + distribution-free CIs replacing resplit Wilcoxon p-values (revision; R3 m5)",
+        "purpose": "Re-split effect sizes + distribution-free CIs for the headline comparisons",
         "date": "2026-08-12",
         "estimand": (
             "median of the split-randomization distribution of the seed-level statistic, "

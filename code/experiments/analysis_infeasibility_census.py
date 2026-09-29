@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-"""Infeasibility census across the evaluation surfaces of Table 4 (tab:expconfig).
+"""Infeasibility census across the evaluation surfaces of Table 5.
 
 Recomputes, from the released per-seed artifacts, how often Algorithm 1 returned
 INFEASIBLE on every evaluation surface, together with the two diagnostics cited
-alongside the census (the Fig. 8(b) pi_min floor sweep and the A8
+alongside the census (the Fig. 8(b) pi_min floor sweep and the n_cert
 calibration-budget sweep). Nothing is re-run: this is bookkeeping over the
-committed artifacts, and every count is asserted against the totals quoted in
-the manuscript's Sec. 5.4 census display.
+released artifacts, and every count is asserted against the totals quoted in
+the census of Section 5.4.
 
 Output: results/analysis/infeasibility_census.json
 """
@@ -31,7 +31,7 @@ def frac(feasible, runs):
 def main():
     surfaces = []
 
-    # --- ImageNet val, frontier re-splits (F_joint artifact; ours rows) ---
+    # --- ImageNet val, frontier re-splits (joint-H result file; ours rows) ---
     fj = load(SUPP / "F_joint_hoeffding_baseline.json")
     for bk, v in fj["imagenet"].items():
         feas, runs = (int(x) for x in v["ours"]["feasible"].split("/"))
@@ -98,7 +98,7 @@ def main():
                          **frac(int(b11[key]["n_feasible"]), n_seeds)})
         assert b11[key]["n_feasible"] == n_seeds == 10
 
-    # --- Synthetic: 27-config calibration sanity + F.1 stress sweep, merged ---
+    # --- Synthetic: 27-config sweep + 30-seed stress sweep, merged ---
     sanity = load(ROOT / "results" / "synthetic_full" / "pc1_summary.json")["configs"]
     f1 = load(SUPP / "F1_b1_pc1_30seeds.json")["rows"]
     merged = {}
@@ -152,8 +152,8 @@ def main():
         assert diagnostics["a8_n_cert_sweep"][n] == "10/10"
 
     out = {
-        "purpose": "Infeasibility census over the evaluation surfaces of Table 4 "
-                   "(manuscript Sec. 5.4), recomputed from released per-seed artifacts.",
+        "purpose": "Infeasibility census over the evaluation surfaces of Table 5 "
+                   "(Section 5.4), recomputed from released per-seed artifacts.",
         "generated_by": "experiments/analysis_infeasibility_census.py",
         "surfaces": surfaces,
         "diagnostics": diagnostics,
