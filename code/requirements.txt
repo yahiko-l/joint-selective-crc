@@ -2,8 +2,8 @@
 numpy==1.26.4
 scipy==1.16.3
 
-# Figure/table generation (figures/gen_*.py)
-# matplotlib>=3.7
+# Scripts that render the paper's tables and figures (paper/*.py)
+# matplotlib==3.10.7
 
 # Only for recomputing per-image losses from scratch (*_compute_logits.py); not needed
 # to reproduce any table/figure from the bundled results/ + data/.
