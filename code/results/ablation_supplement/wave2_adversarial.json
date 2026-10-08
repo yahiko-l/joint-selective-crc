@@ -1,0 +1,33 @@
+{
+  "A5_no3split_leakage": {
+    "n_trials": 1000,
+    "n_cert": 300,
+    "m": 100,
+    "alpha": 0.5,
+    "delta": 0.1,
+    "vio_rate_ours": 0.0,
+    "vio_rate_no3split": 0.248,
+    "delta_target": 0.1,
+    "ours_within_delta": true,
+    "no3split_within_delta": false
+  },
+  "A10_no_cp_rare_acceptance": {
+    "n_trials": 2000,
+    "n": 200,
+    "p_true": 0.01,
+    "delta": 0.05,
+    "p_lcb_cp_mean": 0.0025416158451273974,
+    "p_lcb_chernoff_mean": 1.4860888370969656e-05,
+    "rate_cp_over_p_true": 0.019,
+    "rate_chernoff_over_p_true": 0.0,
+    "cp_within_delta": true,
+    "chernoff_within_delta": true
+  },
+  "A11_no_margin_adversarial": {
+    "n_trials": 200,
+    "pi_min": 0.05,
+    "vio_rate_no_margin": 0.505,
+    "vio_rate_with_margin": 0.0,
+    "ratio_no_margin_vs_with": 101.0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "A12": {
+    "beta": {
+      "mean_width_u_mp": 0.007462910199274929,
+      "mean_width_u_range": 0.012850670861074286,
+      "ratio_range_over_mp": 1.7219382945707713
+    },
+    "bimodal": {
+      "mean_width_u_mp": 0.009013145336887364,
+      "mean_width_u_range": 0.012850670861074286,
+      "ratio_range_over_mp": 1.4257698484547225
+    },
+    "uniform": {
+      "mean_width_u_mp": 0.007830894441424463,
+      "mean_width_u_range": 0.012850670861074286,
+      "ratio_range_over_mp": 1.6410221025449951
+    }
+  },
+  "A13": {
+    "pi_min=0.01": {
+      "n_trials": 5,
+      "n_feasible_ours": 0,
+      "n_feasible_no_mp_var": 0
+    },
+    "pi_min=0.025": {
+      "n_trials": 5,
+      "n_feasible_ours": 0,
+      "n_feasible_no_mp_var": 0
+    },
+    "pi_min=0.05": {
+      "n_trials": 5,
+      "n_feasible_ours": 0,
+      "n_feasible_no_mp_var": 0
+    },
+    "pi_min=0.1": {
+      "n_trials": 5,
+      "n_feasible_ours": 0,
+      "n_feasible_no_mp_var": 0
+    }
+  }
+}

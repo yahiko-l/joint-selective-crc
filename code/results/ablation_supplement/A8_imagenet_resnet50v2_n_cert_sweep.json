@@ -1,0 +1,52 @@
+{
+  "sweep": [
+    {
+      "n_cert": 2000,
+      "n_0_pred": 16026.905980549009,
+      "n_feasible": 0,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "above_threshold": "False"
+    },
+    {
+      "n_cert": 5000,
+      "n_0_pred": 16026.905980549009,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "above_threshold": "False"
+    },
+    {
+      "n_cert": 10000,
+      "n_0_pred": 16026.905980549009,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "above_threshold": "False"
+    },
+    {
+      "n_cert": 15000,
+      "n_0_pred": 16026.905980549009,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "above_threshold": "False"
+    },
+    {
+      "n_cert": 25000,
+      "n_0_pred": 16026.905980549009,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "above_threshold": "True"
+    }
+  ],
+  "config": {
+    "dataset": "imagenet_resnet50v2",
+    "pi_min": 0.02,
+    "alpha": 0.05,
+    "delta": 0.05,
+    "n_seeds": 10,
+    "m": 35
+  }
+}

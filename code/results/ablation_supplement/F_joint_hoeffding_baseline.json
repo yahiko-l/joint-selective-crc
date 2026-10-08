@@ -1,0 +1,2183 @@
+{
+  "experiment": "analysis_joint_baseline",
+  "purpose": "Matched joint Hoeffding--CRC ablation (joint-H) vs Algorithm 1: same CP acceptance leg, MP utility leg, membership and argmax-U_LCB selection rules, and basic-tier failure allocations; only the U1 numerator bound family is swapped.",
+  "definition": {
+    "numerator": "one-sided range-Hoeffding UCB at the U1 allocation: r_H = B*sqrt(log(16m/delta)/(2 n_cert)); deliberately favourable to the baseline",
+    "budget": "same nominal failure budget delta; basic-tier allocations delta/(16m) numerator family, delta/(16m) Clopper-Pearson acceptance, delta/(2m) utility; union-bound failure at most 5*delta/8 for both",
+    "claim_scope": "basic returned-pair validity tier only; no inclusion or external-oracle guarantee is asserted for joint-H, regardless of (star) status",
+    "aggregation": "returned-pair statistics over feasible runs only; infeasible runs are never zero-imputed"
+  },
+  "config": {
+    "imagenet": {
+      "alpha": 0.05,
+      "pi_min": 0.01,
+      "delta": 0.05,
+      "B": 1.0,
+      "c": 0.1,
+      "V": 1.0,
+      "n_cert": 33000,
+      "n_tune": 8500,
+      "n_test": 8500,
+      "n_classes": 1000,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    "imagenet_grid": {
+      "Lambda": [
+        0.001,
+        0.005,
+        0.01,
+        0.02,
+        0.05,
+        0.1,
+        0.2
+      ],
+      "T": [
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ]
+    },
+    "coco": {
+      "alpha": 0.1,
+      "pi_min": 0.1,
+      "delta": 0.1,
+      "B": 1.0,
+      "c": 0.0,
+      "V": 1.0,
+      "m": 15,
+      "n_cal": 4000,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ]
+    }
+  },
+  "imagenet": {
+    "ResNet-50 V2": {
+      "ours": {
+        "feasible": "20/20",
+        "median_n_certified": 21.0,
+        "median_max_cert_p_hat": 0.2746,
+        "median_p_hat_at_returned_pair": 0.2746,
+        "median_p_lcb_at_returned_pair": 0.2654,
+        "median_u_lcb_at_returned_pair": -0.0552
+      },
+      "joint_h": {
+        "feasible": "20/20",
+        "median_n_certified": 7.0,
+        "median_max_cert_p_hat": 0.2746,
+        "median_p_hat_at_returned_pair": 0.2746,
+        "median_p_lcb_at_returned_pair": 0.2654,
+        "median_u_lcb_at_returned_pair": -0.0552
+      },
+      "same_returned_pair_rate_when_both_feasible": 1.0,
+      "ghatH_subset_of_ghat_all_runs": true,
+      "ghatH_strict_subset_runs": "20/20",
+      "per_seed": [
+        {
+          "seed": 42,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2762121212121212,
+            "sel": 30,
+            "p_hat_sel": 0.2762121212121212,
+            "p_lcb_sel": 0.26703984310137635,
+            "u_lcb_sel": -0.054437624741677224
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2762121212121212,
+            "sel": 30,
+            "p_hat_sel": 0.2762121212121212,
+            "p_lcb_sel": 0.26703984310137635,
+            "u_lcb_sel": -0.054437624741677224
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 43,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27506060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.27506060606060606,
+            "p_lcb_sel": 0.2659005923947187,
+            "u_lcb_sel": -0.055369947865345014
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27506060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.27506060606060606,
+            "p_lcb_sel": 0.2659005923947187,
+            "u_lcb_sel": -0.055369947865345014
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 44,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27575757575757576,
+            "sel": 30,
+            "p_hat_sel": 0.27575757575757576,
+            "p_lcb_sel": 0.2665901297212827,
+            "u_lcb_sel": -0.054937647638374755
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27575757575757576,
+            "sel": 30,
+            "p_hat_sel": 0.27575757575757576,
+            "p_lcb_sel": 0.2665901297212827,
+            "u_lcb_sel": -0.054937647638374755
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 45,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27324242424242423,
+            "sel": 30,
+            "p_hat_sel": 0.27324242424242423,
+            "p_lcb_sel": 0.2641019319452704,
+            "u_lcb_sel": -0.055332106633348914
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27324242424242423,
+            "sel": 30,
+            "p_hat_sel": 0.27324242424242423,
+            "p_lcb_sel": 0.2641019319452704,
+            "u_lcb_sel": -0.055332106633348914
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 46,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2759090909090909,
+            "sel": 30,
+            "p_hat_sel": 0.2759090909090909,
+            "p_lcb_sel": 0.2667400328559428,
+            "u_lcb_sel": -0.0545045878185567
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2759090909090909,
+            "sel": 30,
+            "p_hat_sel": 0.2759090909090909,
+            "p_lcb_sel": 0.2667400328559428,
+            "u_lcb_sel": -0.0545045878185567
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 47,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27360606060606063,
+            "sel": 30,
+            "p_hat_sel": 0.27360606060606063,
+            "p_lcb_sel": 0.2644616486636142,
+            "u_lcb_sel": -0.05491308302032196
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27360606060606063,
+            "sel": 30,
+            "p_hat_sel": 0.27360606060606063,
+            "p_lcb_sel": 0.2644616486636142,
+            "u_lcb_sel": -0.05491308302032196
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 48,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2733030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.2733030303030303,
+            "p_lcb_sel": 0.2641618841968586,
+            "u_lcb_sel": -0.055267112274016435
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2733030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.2733030303030303,
+            "p_lcb_sel": 0.2641618841968586,
+            "u_lcb_sel": -0.055267112274016435
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 49,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.275030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.275030303030303,
+            "p_lcb_sel": 0.2658706131485861,
+            "u_lcb_sel": -0.0552577698581522
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.275030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.275030303030303,
+            "p_lcb_sel": 0.2658706131485861,
+            "u_lcb_sel": -0.0552577698581522
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 50,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.274,
+            "sel": 30,
+            "p_hat_sel": 0.274,
+            "p_lcb_sel": 0.2648513504587868,
+            "u_lcb_sel": -0.0555142224943527
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.274,
+            "sel": 30,
+            "p_hat_sel": 0.274,
+            "p_lcb_sel": 0.2648513504587868,
+            "u_lcb_sel": -0.0555142224943527
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 51,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2757272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.2757272727272727,
+            "p_lcb_sel": 0.2665601492534818,
+            "u_lcb_sel": -0.054933992624227095
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2757272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.2757272727272727,
+            "p_lcb_sel": 0.2665601492534818,
+            "u_lcb_sel": -0.054933992624227095
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 52,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27406060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.27406060606060606,
+            "p_lcb_sel": 0.2649113053819411,
+            "u_lcb_sel": -0.05499819197178178
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27406060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.27406060606060606,
+            "p_lcb_sel": 0.2649113053819411,
+            "u_lcb_sel": -0.05499819197178178
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 53,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27375757575757576,
+            "sel": 30,
+            "p_hat_sel": 0.27375757575757576,
+            "p_lcb_sel": 0.26461153290132194,
+            "u_lcb_sel": -0.055205746626819076
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27375757575757576,
+            "sel": 30,
+            "p_hat_sel": 0.27375757575757576,
+            "p_lcb_sel": 0.26461153290132194,
+            "u_lcb_sel": -0.055205746626819076
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 54,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.27415151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.27415151515151515,
+            "p_lcb_sel": 0.26500123816683424,
+            "u_lcb_sel": -0.055191494560790484
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.27415151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.27415151515151515,
+            "p_lcb_sel": 0.26500123816683424,
+            "u_lcb_sel": -0.055191494560790484
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 55,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.274,
+            "sel": 30,
+            "p_hat_sel": 0.274,
+            "p_lcb_sel": 0.2648513504587868,
+            "u_lcb_sel": -0.05520132832054177
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.274,
+            "sel": 30,
+            "p_hat_sel": 0.274,
+            "p_lcb_sel": 0.2648513504587868,
+            "u_lcb_sel": -0.05520132832054177
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 56,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2754848484848485,
+            "sel": 30,
+            "p_hat_sel": 0.2754848484848485,
+            "p_lcb_sel": 0.26632030742155705,
+            "u_lcb_sel": -0.05508382954354126
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2754848484848485,
+            "sel": 30,
+            "p_hat_sel": 0.2754848484848485,
+            "p_lcb_sel": 0.26632030742155705,
+            "u_lcb_sel": -0.05508382954354126
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 57,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2737272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.2737272727272727,
+            "p_lcb_sel": 0.26458155594693455,
+            "u_lcb_sel": -0.055656211537379666
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2737272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.2737272727272727,
+            "p_lcb_sel": 0.26458155594693455,
+            "u_lcb_sel": -0.055656211537379666
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 58,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2733030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.2733030303030303,
+            "p_lcb_sel": 0.2641618841968586,
+            "u_lcb_sel": -0.05604710581506445
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2733030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.2733030303030303,
+            "p_lcb_sel": 0.2641618841968586,
+            "u_lcb_sel": -0.05604710581506445
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 59,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2755151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.2755151515151515,
+            "p_lcb_sel": 0.26635028746475564,
+            "u_lcb_sel": -0.05551408156952033
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2755151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.2755151515151515,
+            "p_lcb_sel": 0.26635028746475564,
+            "u_lcb_sel": -0.05551408156952033
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 60,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.278,
+            "sel": 30,
+            "p_hat_sel": 0.278,
+            "p_lcb_sel": 0.26880883119122184,
+            "u_lcb_sel": -0.054058792123815036
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.278,
+            "sel": 30,
+            "p_hat_sel": 0.278,
+            "p_lcb_sel": 0.26880883119122184,
+            "u_lcb_sel": -0.054058792123815036
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 61,
+          "ours": {
+            "feasible": true,
+            "n_certified": 21,
+            "max_cert_p_hat": 0.2785151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.2785151515151515,
+            "p_lcb_sel": 0.26931857368693807,
+            "u_lcb_sel": -0.05411119431750891
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 7,
+            "max_cert_p_hat": 0.2785151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.2785151515151515,
+            "p_lcb_sel": 0.26931857368693807,
+            "u_lcb_sel": -0.05411119431750891
+          },
+          "same_returned_pair": true
+        }
+      ],
+      "seconds": 66.5
+    },
+    "ResNet-101 V2": {
+      "ours": {
+        "feasible": "20/20",
+        "median_n_certified": 33.0,
+        "median_max_cert_p_hat": 0.8046,
+        "median_p_hat_at_returned_pair": 0.8046,
+        "median_p_lcb_at_returned_pair": 0.7963,
+        "median_u_lcb_at_returned_pair": 0.3832
+      },
+      "joint_h": {
+        "feasible": "20/20",
+        "median_n_certified": 27.0,
+        "median_max_cert_p_hat": 0.8046,
+        "median_p_hat_at_returned_pair": 0.8046,
+        "median_p_lcb_at_returned_pair": 0.7963,
+        "median_u_lcb_at_returned_pair": 0.3832
+      },
+      "same_returned_pair_rate_when_both_feasible": 1.0,
+      "ghatH_subset_of_ghat_all_runs": true,
+      "ghatH_strict_subset_runs": "20/20",
+      "per_seed": [
+        {
+          "seed": 42,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8046060606060607,
+            "sel": 30,
+            "p_hat_sel": 0.8046060606060607,
+            "p_lcb_sel": 0.7963221575508486,
+            "u_lcb_sel": 0.38321397577100896
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8046060606060607,
+            "sel": 30,
+            "p_hat_sel": 0.8046060606060607,
+            "p_lcb_sel": 0.7963221575508486,
+            "u_lcb_sel": 0.38321397577100896
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 43,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.805060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.805060606060606,
+            "p_lcb_sel": 0.7967837793843358,
+            "u_lcb_sel": 0.3816425012079733
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.805060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.805060606060606,
+            "p_lcb_sel": 0.7967837793843358,
+            "u_lcb_sel": 0.3816425012079733
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 44,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8052727272727273,
+            "sel": 30,
+            "p_hat_sel": 0.8052727272727273,
+            "p_lcb_sel": 0.7969992087669475,
+            "u_lcb_sel": 0.38293014766142053
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8052727272727273,
+            "sel": 30,
+            "p_hat_sel": 0.8052727272727273,
+            "p_lcb_sel": 0.7969992087669475,
+            "u_lcb_sel": 0.38293014766142053
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 45,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8046969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8046969696969697,
+            "p_lcb_sel": 0.796414480549132,
+            "u_lcb_sel": 0.38302669287759633
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8046969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8046969696969697,
+            "p_lcb_sel": 0.796414480549132,
+            "u_lcb_sel": 0.38302669287759633
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 46,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8045151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8045151515151515,
+            "p_lcb_sel": 0.7962298352360487,
+            "u_lcb_sel": 0.3816726505885952
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8045151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8045151515151515,
+            "p_lcb_sel": 0.7962298352360487,
+            "u_lcb_sel": 0.3816726505885952
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 47,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8039090909090909,
+            "sel": 30,
+            "p_hat_sel": 0.8039090909090909,
+            "p_lcb_sel": 0.7956143705775949,
+            "u_lcb_sel": 0.3812409557267441
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8039090909090909,
+            "sel": 30,
+            "p_hat_sel": 0.8039090909090909,
+            "p_lcb_sel": 0.7956143705775949,
+            "u_lcb_sel": 0.3812409557267441
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 48,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8026969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8026969696969697,
+            "p_lcb_sel": 0.7943835319190274,
+            "u_lcb_sel": 0.38258531087582576
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8026969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8026969696969697,
+            "p_lcb_sel": 0.7943835319190274,
+            "u_lcb_sel": 0.38258531087582576
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 49,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8054848484848485,
+            "sel": 30,
+            "p_hat_sel": 0.8054848484848485,
+            "p_lcb_sel": 0.7972146418852277,
+            "u_lcb_sel": 0.38489469990211034
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8054848484848485,
+            "sel": 30,
+            "p_hat_sel": 0.8054848484848485,
+            "p_lcb_sel": 0.7972146418852277,
+            "u_lcb_sel": 0.38489469990211034
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 50,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8037878787878788,
+            "sel": 30,
+            "p_hat_sel": 0.8037878787878788,
+            "p_lcb_sel": 0.7954912812798534,
+            "u_lcb_sel": 0.38474198426423134
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8037878787878788,
+            "sel": 30,
+            "p_hat_sel": 0.8037878787878788,
+            "p_lcb_sel": 0.7954912812798534,
+            "u_lcb_sel": 0.38474198426423134
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 51,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8056969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8056969696969697,
+            "p_lcb_sel": 0.797430078743809,
+            "u_lcb_sel": 0.3831902998707753
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8056969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.8056969696969697,
+            "p_lcb_sel": 0.797430078743809,
+            "u_lcb_sel": 0.3831902998707753
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 52,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8056363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8056363636363636,
+            "p_lcb_sel": 0.7973685249737092,
+            "u_lcb_sel": 0.3853177581993263
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8056363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8056363636363636,
+            "p_lcb_sel": 0.7973685249737092,
+            "u_lcb_sel": 0.3853177581993263
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 53,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8042424242424242,
+            "sel": 30,
+            "p_hat_sel": 0.8042424242424242,
+            "p_lcb_sel": 0.7959528723889456,
+            "u_lcb_sel": 0.3835281833531218
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8042424242424242,
+            "sel": 30,
+            "p_hat_sel": 0.8042424242424242,
+            "p_lcb_sel": 0.7959528723889456,
+            "u_lcb_sel": 0.3835281833531218
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 54,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8035151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8035151515151515,
+            "p_lcb_sel": 0.79521433478028,
+            "u_lcb_sel": 0.3821722515822057
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8035151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8035151515151515,
+            "p_lcb_sel": 0.79521433478028,
+            "u_lcb_sel": 0.3821722515822057
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 55,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8028484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8028484848484848,
+            "p_lcb_sel": 0.7945373801619897,
+            "u_lcb_sel": 0.3829525031704755
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8028484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8028484848484848,
+            "p_lcb_sel": 0.7945373801619897,
+            "u_lcb_sel": 0.3829525031704755
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 56,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.804030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.804030303030303,
+            "p_lcb_sel": 0.7957374610855197,
+            "u_lcb_sel": 0.3860914231168438
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.804030303030303,
+            "sel": 30,
+            "p_hat_sel": 0.804030303030303,
+            "p_lcb_sel": 0.7957374610855197,
+            "u_lcb_sel": 0.3860914231168438
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 57,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8058484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8058484848484848,
+            "p_lcb_sel": 0.7975839645067788,
+            "u_lcb_sel": 0.38704621257663097
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8058484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8058484848484848,
+            "p_lcb_sel": 0.7975839645067788,
+            "u_lcb_sel": 0.38704621257663097
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 58,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.803,
+            "sel": 30,
+            "p_hat_sel": 0.803,
+            "p_lcb_sel": 0.7946912302843471,
+            "u_lcb_sel": 0.38070051388915344
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.803,
+            "sel": 30,
+            "p_hat_sel": 0.803,
+            "p_lcb_sel": 0.7946912302843471,
+            "u_lcb_sel": 0.38070051388915344
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 59,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8057272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.8057272727272727,
+            "p_lcb_sel": 0.7974608557434941,
+            "u_lcb_sel": 0.38494021121845645
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8057272727272727,
+            "sel": 30,
+            "p_hat_sel": 0.8057272727272727,
+            "p_lcb_sel": 0.7974608557434941,
+            "u_lcb_sel": 0.38494021121845645
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 60,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8036666666666666,
+            "sel": 30,
+            "p_hat_sel": 0.8036666666666666,
+            "p_lcb_sel": 0.7953681931914471,
+            "u_lcb_sel": 0.3841820094927224
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8036666666666666,
+            "sel": 30,
+            "p_hat_sel": 0.8036666666666666,
+            "p_lcb_sel": 0.7953681931914471,
+            "u_lcb_sel": 0.3841820094927224
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 61,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.805,
+            "sel": 30,
+            "p_hat_sel": 0.805,
+            "p_lcb_sel": 0.7967222288176572,
+            "u_lcb_sel": 0.38394957106148137
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.805,
+            "sel": 30,
+            "p_hat_sel": 0.805,
+            "p_lcb_sel": 0.7967222288176572,
+            "u_lcb_sel": 0.38394957106148137
+          },
+          "same_returned_pair": true
+        }
+      ],
+      "seconds": 64.4
+    },
+    "ResNet-152 V2": {
+      "ours": {
+        "feasible": "20/20",
+        "median_n_certified": 33.0,
+        "median_max_cert_p_hat": 0.8285,
+        "median_p_hat_at_returned_pair": 0.8285,
+        "median_p_lcb_at_returned_pair": 0.8207,
+        "median_u_lcb_at_returned_pair": 0.4015
+      },
+      "joint_h": {
+        "feasible": "20/20",
+        "median_n_certified": 27.0,
+        "median_max_cert_p_hat": 0.8285,
+        "median_p_hat_at_returned_pair": 0.8285,
+        "median_p_lcb_at_returned_pair": 0.8207,
+        "median_u_lcb_at_returned_pair": 0.4015
+      },
+      "same_returned_pair_rate_when_both_feasible": 1.0,
+      "ghatH_subset_of_ghat_all_runs": true,
+      "ghatH_strict_subset_runs": "20/20",
+      "per_seed": [
+        {
+          "seed": 42,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8284242424242424,
+            "sel": 30,
+            "p_hat_sel": 0.8284242424242424,
+            "p_lcb_sel": 0.8205353255719584,
+            "u_lcb_sel": 0.40040656081136683
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8284242424242424,
+            "sel": 30,
+            "p_hat_sel": 0.8284242424242424,
+            "p_lcb_sel": 0.8205353255719584,
+            "u_lcb_sel": 0.40040656081136683
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 43,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8287878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8287878787878787,
+            "p_lcb_sel": 0.8209053941238711,
+            "u_lcb_sel": 0.400777958236428
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8287878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8287878787878787,
+            "p_lcb_sel": 0.8209053941238711,
+            "u_lcb_sel": 0.400777958236428
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 44,
+          "ours": {
+            "feasible": true,
+            "n_certified": 32,
+            "max_cert_p_hat": 0.8292727272727273,
+            "sel": 30,
+            "p_hat_sel": 0.8292727272727273,
+            "p_lcb_sel": 0.8213988387029565,
+            "u_lcb_sel": 0.40113627468978735
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8292727272727273,
+            "sel": 30,
+            "p_hat_sel": 0.8292727272727273,
+            "p_lcb_sel": 0.8213988387029565,
+            "u_lcb_sel": 0.40113627468978735
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 45,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8285151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8285151515151515,
+            "p_lcb_sel": 0.8206278415161264,
+            "u_lcb_sel": 0.4016951888776646
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8285151515151515,
+            "sel": 30,
+            "p_hat_sel": 0.8285151515151515,
+            "p_lcb_sel": 0.8206278415161264,
+            "u_lcb_sel": 0.4016951888776646
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 46,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8273636363636364,
+            "sel": 30,
+            "p_hat_sel": 0.8273636363636364,
+            "p_lcb_sel": 0.8194560315033845,
+            "u_lcb_sel": 0.4000422047284862
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8273636363636364,
+            "sel": 30,
+            "p_hat_sel": 0.8273636363636364,
+            "p_lcb_sel": 0.8194560315033845,
+            "u_lcb_sel": 0.4000422047284862
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 47,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8268787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8268787878787879,
+            "p_lcb_sel": 0.8189626757554802,
+            "u_lcb_sel": 0.4006282284465765
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8268787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8268787878787879,
+            "p_lcb_sel": 0.8189626757554802,
+            "u_lcb_sel": 0.4006282284465765
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 48,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8274242424242424,
+            "sel": 30,
+            "p_hat_sel": 0.8274242424242424,
+            "p_lcb_sel": 0.8195177025488202,
+            "u_lcb_sel": 0.40238678825495966
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8274242424242424,
+            "sel": 30,
+            "p_hat_sel": 0.8274242424242424,
+            "p_lcb_sel": 0.8195177025488202,
+            "u_lcb_sel": 0.40238678825495966
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 49,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8285757575757575,
+            "sel": 30,
+            "p_hat_sel": 0.8285757575757575,
+            "p_lcb_sel": 0.8206895192541728,
+            "u_lcb_sel": 0.40234319334354524
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8285757575757575,
+            "sel": 30,
+            "p_hat_sel": 0.8285757575757575,
+            "p_lcb_sel": 0.8206895192541728,
+            "u_lcb_sel": 0.40234319334354524
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 50,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.827060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.827060606060606,
+            "p_lcb_sel": 0.8191476815348855,
+            "u_lcb_sel": 0.4005660122554623
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.827060606060606,
+            "sel": 30,
+            "p_hat_sel": 0.827060606060606,
+            "p_lcb_sel": 0.8191476815348855,
+            "u_lcb_sel": 0.4005660122554623
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 51,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8298484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8298484848484848,
+            "p_lcb_sel": 0.8219848336929427,
+            "u_lcb_sel": 0.4023389019910809
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8298484848484848,
+            "sel": 30,
+            "p_hat_sel": 0.8298484848484848,
+            "p_lcb_sel": 0.8219848336929427,
+            "u_lcb_sel": 0.4023389019910809
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 52,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8307878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8307878787878787,
+            "p_lcb_sel": 0.8229409999853464,
+            "u_lcb_sel": 0.40359497857308524
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8307878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8307878787878787,
+            "p_lcb_sel": 0.8229409999853464,
+            "u_lcb_sel": 0.40359497857308524
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 53,
+          "ours": {
+            "feasible": true,
+            "n_certified": 32,
+            "max_cert_p_hat": 0.8308787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8308787878787879,
+            "p_lcb_sel": 0.8230335367783821,
+            "u_lcb_sel": 0.4016677099183227
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8308787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8308787878787879,
+            "p_lcb_sel": 0.8230335367783821,
+            "u_lcb_sel": 0.4016677099183227
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 54,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.827,
+            "sel": 30,
+            "p_hat_sel": 0.827,
+            "p_lcb_sel": 0.8190860125919003,
+            "u_lcb_sel": 0.3987762752700728
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.827,
+            "sel": 30,
+            "p_hat_sel": 0.827,
+            "p_lcb_sel": 0.8190860125919003,
+            "u_lcb_sel": 0.3987762752700728
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 55,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8276363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8276363636363636,
+            "p_lcb_sel": 0.8197335539722919,
+            "u_lcb_sel": 0.4037162767044296
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8276363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8276363636363636,
+            "p_lcb_sel": 0.8197335539722919,
+            "u_lcb_sel": 0.4037162767044296
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 56,
+          "ours": {
+            "feasible": true,
+            "n_certified": 32,
+            "max_cert_p_hat": 0.8296363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8296363636363636,
+            "p_lcb_sel": 0.8217689370615952,
+            "u_lcb_sel": 0.40548230351233533
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8296363636363636,
+            "sel": 30,
+            "p_hat_sel": 0.8296363636363636,
+            "p_lcb_sel": 0.8217689370615952,
+            "u_lcb_sel": 0.40548230351233533
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 57,
+          "ours": {
+            "feasible": true,
+            "n_certified": 32,
+            "max_cert_p_hat": 0.827969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.827969696969697,
+            "p_lcb_sel": 0.8200727577666863,
+            "u_lcb_sel": 0.3999395208789032
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.827969696969697,
+            "sel": 30,
+            "p_hat_sel": 0.827969696969697,
+            "p_lcb_sel": 0.8200727577666863,
+            "u_lcb_sel": 0.3999395208789032
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 58,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8268787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8268787878787879,
+            "p_lcb_sel": 0.8189626757554802,
+            "u_lcb_sel": 0.4002543112885019
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8268787878787879,
+            "sel": 30,
+            "p_hat_sel": 0.8268787878787879,
+            "p_lcb_sel": 0.8189626757554802,
+            "u_lcb_sel": 0.4002543112885019
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 59,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8291212121212121,
+            "sel": 30,
+            "p_hat_sel": 0.8291212121212121,
+            "p_lcb_sel": 0.8212446348319462,
+            "u_lcb_sel": 0.4030622130990988
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8291212121212121,
+            "sel": 30,
+            "p_hat_sel": 0.8291212121212121,
+            "p_lcb_sel": 0.8212446348319462,
+            "u_lcb_sel": 0.4030622130990988
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 60,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8297878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8297878787878787,
+            "p_lcb_sel": 0.82192314849532,
+            "u_lcb_sel": 0.40132309638880587
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8297878787878787,
+            "sel": 30,
+            "p_hat_sel": 0.8297878787878787,
+            "p_lcb_sel": 0.82192314849532,
+            "u_lcb_sel": 0.40132309638880587
+          },
+          "same_returned_pair": true
+        },
+        {
+          "seed": 61,
+          "ours": {
+            "feasible": true,
+            "n_certified": 33,
+            "max_cert_p_hat": 0.8288181818181818,
+            "sel": 30,
+            "p_hat_sel": 0.8288181818181818,
+            "p_lcb_sel": 0.8209362337450641,
+            "u_lcb_sel": 0.40232277263883437
+          },
+          "joint_h": {
+            "feasible": true,
+            "n_certified": 27,
+            "max_cert_p_hat": 0.8288181818181818,
+            "sel": 30,
+            "p_hat_sel": 0.8288181818181818,
+            "p_lcb_sel": 0.8209362337450641,
+            "u_lcb_sel": 0.40232277263883437
+          },
+          "same_returned_pair": true
+        }
+      ],
+      "seconds": 64.9
+    }
+  },
+  "coco": {
+    "ours": {
+      "feasible": "29/30",
+      "median_n_certified": 4.0,
+      "median_max_cert_p_hat": 0.243,
+      "median_p_hat_at_returned_pair": 0.243,
+      "median_p_lcb_at_returned_pair": 0.2207,
+      "median_u_lcb_at_returned_pair": 0.199
+    },
+    "joint_h": {
+      "feasible": "0/30",
+      "median_n_certified": null,
+      "median_max_cert_p_hat": null,
+      "median_p_hat_at_returned_pair": null,
+      "median_p_lcb_at_returned_pair": null,
+      "median_u_lcb_at_returned_pair": null
+    },
+    "same_returned_pair_rate_when_both_feasible": null,
+    "ghatH_subset_of_ghat_all_runs": true,
+    "ghatH_strict_subset_runs": "29/30",
+    "per_seed": [
+      {
+        "seed": 42,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19920632574545521
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 43,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19875338658763936
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 44,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19898899843422674
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 45,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19879258882806894
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 46,
+        "ours": {
+          "feasible": true,
+          "n_certified": 2,
+          "max_cert_p_hat": 0.21075,
+          "sel": 9,
+          "p_hat_sel": 0.21075,
+          "p_lcb_sel": 0.18965647622383258,
+          "u_lcb_sel": 0.17074889084800318
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 47,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19896738656815005
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 48,
+        "ours": {
+          "feasible": true,
+          "n_certified": 1,
+          "max_cert_p_hat": 0.17875,
+          "sel": 10,
+          "p_hat_sel": 0.17875,
+          "p_lcb_sel": 0.15902212900025192,
+          "u_lcb_sel": 0.14297059087962846
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 49,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.1989332909396723
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 50,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.1989785734236147
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 51,
+        "ours": {
+          "feasible": true,
+          "n_certified": 2,
+          "max_cert_p_hat": 0.21075,
+          "sel": 9,
+          "p_hat_sel": 0.21075,
+          "p_lcb_sel": 0.18965647622383258,
+          "u_lcb_sel": 0.17075131248556394
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 52,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19917151607537287
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 53,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.275,
+          "sel": 7,
+          "p_hat_sel": 0.275,
+          "p_lcb_sel": 0.2517404423540528,
+          "u_lcb_sel": 0.22695238648556534
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 54,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19894835594619673
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 55,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19923531890087065
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 56,
+        "ours": {
+          "feasible": true,
+          "n_certified": 5,
+          "max_cert_p_hat": 0.275,
+          "sel": 7,
+          "p_hat_sel": 0.275,
+          "p_lcb_sel": 0.2517404423540528,
+          "u_lcb_sel": 0.22672543151876884
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 57,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.21075,
+          "sel": 9,
+          "p_hat_sel": 0.21075,
+          "p_lcb_sel": 0.18965647622383258,
+          "u_lcb_sel": 0.17091186024655325
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 58,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19913853893091746
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 59,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19903938411653332
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 60,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19869961052115886
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 61,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19883591353429467
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 62,
+        "ours": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 63,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19904519201728546
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 64,
+        "ours": {
+          "feasible": true,
+          "n_certified": 1,
+          "max_cert_p_hat": 0.21075,
+          "sel": 9,
+          "p_hat_sel": 0.21075,
+          "p_lcb_sel": 0.18965647622383258,
+          "u_lcb_sel": 0.17068038667356822
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 65,
+        "ours": {
+          "feasible": true,
+          "n_certified": 5,
+          "max_cert_p_hat": 0.275,
+          "sel": 7,
+          "p_hat_sel": 0.275,
+          "p_lcb_sel": 0.2517404423540528,
+          "u_lcb_sel": 0.22691558321494787
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 66,
+        "ours": {
+          "feasible": true,
+          "n_certified": 1,
+          "max_cert_p_hat": 0.17875,
+          "sel": 10,
+          "p_hat_sel": 0.17875,
+          "p_lcb_sel": 0.15902212900025192,
+          "u_lcb_sel": 0.14293345775695615
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 67,
+        "ours": {
+          "feasible": true,
+          "n_certified": 5,
+          "max_cert_p_hat": 0.275,
+          "sel": 7,
+          "p_hat_sel": 0.275,
+          "p_lcb_sel": 0.2517404423540528,
+          "u_lcb_sel": 0.22707348717510714
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 68,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.1993423502347612
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 69,
+        "ours": {
+          "feasible": true,
+          "n_certified": 3,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19905799064316806
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 70,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.19902468681445967
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      },
+      {
+        "seed": 71,
+        "ours": {
+          "feasible": true,
+          "n_certified": 4,
+          "max_cert_p_hat": 0.243,
+          "sel": 8,
+          "p_hat_sel": 0.243,
+          "p_lcb_sel": 0.22073260720526747,
+          "u_lcb_sel": 0.1987977775813674
+        },
+        "joint_h": {
+          "feasible": false,
+          "n_certified": 0,
+          "max_cert_p_hat": 0.0,
+          "sel": null,
+          "p_hat_sel": null,
+          "p_lcb_sel": null,
+          "u_lcb_sel": null
+        },
+        "same_returned_pair": null
+      }
+    ]
+  }
+}

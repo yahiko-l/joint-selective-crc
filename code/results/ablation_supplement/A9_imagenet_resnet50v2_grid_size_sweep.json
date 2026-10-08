@@ -1,0 +1,48 @@
+{
+  "sweep": [
+    {
+      "m_lambda": 3,
+      "m_tau": 5,
+      "m_total": 15,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "median_width_r": 0.1409964268513192
+    },
+    {
+      "m_lambda": 7,
+      "m_tau": 5,
+      "m_total": 35,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "median_width_r": 0.16079095498673163
+    },
+    {
+      "m_lambda": 14,
+      "m_tau": 5,
+      "m_total": 70,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "median_width_r": 0.04801643731256569
+    },
+    {
+      "m_lambda": 16,
+      "m_tau": 5,
+      "m_total": 80,
+      "n_feasible": 10,
+      "n_seeds": 10,
+      "n_vio_joint": 0,
+      "median_width_r": 0.04842857485601549
+    }
+  ],
+  "config": {
+    "dataset": "imagenet_resnet50v2",
+    "pi_min": 0.02,
+    "n_cert": 25000,
+    "alpha": 0.05,
+    "delta": 0.05,
+    "n_seeds": 10
+  }
+}

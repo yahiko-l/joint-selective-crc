@@ -1,0 +1,161 @@
+{
+  "purpose": "Infeasibility census over the evaluation surfaces of Table 5 (Section 5.4), recomputed from released per-seed artifacts.",
+  "generated_by": "experiments/analysis_infeasibility_census.py",
+  "surfaces": [
+    {
+      "surface": "ImageNet val (ResNet-50 V2; frontier re-splits)",
+      "source": "F_joint_hoeffding_baseline.json",
+      "runs": 20,
+      "feasible": 20,
+      "infeasible": 0
+    },
+    {
+      "surface": "ImageNet val (ResNet-101 V2; frontier re-splits)",
+      "source": "F_joint_hoeffding_baseline.json",
+      "runs": 20,
+      "feasible": 20,
+      "infeasible": 0
+    },
+    {
+      "surface": "ImageNet val (ResNet-152 V2; frontier re-splits)",
+      "source": "F_joint_hoeffding_baseline.json",
+      "runs": 20,
+      "feasible": 20,
+      "infeasible": 0
+    },
+    {
+      "surface": "ImageNet val (RN50 V2; validity re-splits)",
+      "source": "imagenet_primary_real/results.json",
+      "runs": 30,
+      "feasible": 30,
+      "infeasible": 0
+    },
+    {
+      "surface": "COCO val 2017 (softmax g)",
+      "source": "G_coco_pixacc_g_softmax_a0.10_pi0.10_robust.json",
+      "infeasible_seeds": [
+        62
+      ],
+      "runs": 30,
+      "feasible": 29,
+      "infeasible": 1
+    },
+    {
+      "surface": "COCO val 2017 (entropy g)",
+      "source": "G_coco_pixacc_g_entropy_a0.10_pi0.10_robust.json",
+      "infeasible_seeds": [
+        43,
+        44,
+        45,
+        46,
+        48,
+        51,
+        57,
+        59
+      ],
+      "runs": 20,
+      "feasible": 12,
+      "infeasible": 8
+    },
+    {
+      "surface": "CIFAR-100 (RN56; four floors x 10 seeds)",
+      "source": "A1_cifar100_resnet56_pi_min_sweep.json",
+      "runs": 40,
+      "feasible": 40,
+      "infeasible": 0
+    },
+    {
+      "surface": "ADE20K (Mask2Former-Swin-B)",
+      "source": "G_ade20k_mask2former_g_softmax.json",
+      "runs": 20,
+      "feasible": 20,
+      "infeasible": 0
+    },
+    {
+      "surface": "ADE20K (SegFormer-MiT-B2)",
+      "source": "G_ade20k_segformer_g_softmax.json",
+      "runs": 20,
+      "feasible": 20,
+      "infeasible": 0
+    },
+    {
+      "surface": "ImageNet-V2 block (i.i.d. test)",
+      "source": "B11_distribution_shift.json",
+      "runs": 10,
+      "feasible": 10,
+      "infeasible": 0
+    },
+    {
+      "surface": "ImageNet-V2 block (shift test)",
+      "source": "B11_distribution_shift.json",
+      "runs": 10,
+      "feasible": 10,
+      "infeasible": 0
+    },
+    {
+      "surface": "Synthetic, alpha=0.10 (budget below E[L]=2/7)",
+      "source": "F1_b1_pc1_30seeds.json",
+      "runs": 240,
+      "feasible": 0,
+      "infeasible": 240
+    },
+    {
+      "surface": "Synthetic, alpha=0.30, n_cert=1000",
+      "source": "pc1_summary.json + F1_b1_pc1_30seeds.json",
+      "runs": 180,
+      "feasible": 0,
+      "infeasible": 180
+    },
+    {
+      "surface": "Synthetic, alpha=0.30, n_cert=5000",
+      "source": "pc1_summary.json + F1_b1_pc1_30seeds.json",
+      "runs": 300,
+      "feasible": 87,
+      "infeasible": 213
+    },
+    {
+      "surface": "Synthetic, alpha=0.30, n_cert=25000",
+      "source": "pc1_summary.json + F1_b1_pc1_30seeds.json",
+      "runs": 300,
+      "feasible": 300,
+      "infeasible": 0
+    }
+  ],
+  "diagnostics": {
+    "fig8b_floor_sweeps": {
+      "A1_imagenet_resnet50v2_pi_min_sweep": {
+        "0.005": "10/10",
+        "0.01": "10/10",
+        "0.02": "10/10",
+        "0.05": "10/10",
+        "0.1": "10/10"
+      },
+      "A1_imagenet_resnet101v2_pi_min_sweep": {
+        "0.005": "10/10",
+        "0.01": "10/10",
+        "0.02": "10/10",
+        "0.05": "10/10",
+        "0.1": "10/10"
+      }
+    },
+    "a8_n_cert_sweep": {
+      "2000": "0/10",
+      "5000": "10/10",
+      "10000": "10/10",
+      "15000": "10/10",
+      "25000": "10/10"
+    }
+  },
+  "totals": {
+    "synthetic": {
+      "runs": 1020,
+      "feasible": 387,
+      "infeasible": 633
+    },
+    "real_data_infeasible": {
+      "COCO softmax": "1/30",
+      "COCO entropy": "8/20",
+      "all other real surfaces": "0"
+    }
+  }
+}

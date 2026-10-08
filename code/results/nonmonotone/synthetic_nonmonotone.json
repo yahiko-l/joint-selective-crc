@@ -1,0 +1,2387 @@
+{
+  "design": {
+    "tau": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "p_acc": [
+      0.9,
+      0.7,
+      0.5,
+      0.3,
+      0.1
+    ],
+    "tau0": 0.5,
+    "alpha": 0.1,
+    "delta": 0.1,
+    "pi_min": 0.1,
+    "c": 0.05,
+    "risk_good": 0.03,
+    "main_eps": 0.005,
+    "sens_eps": [
+      0.0,
+      0.01,
+      0.02
+    ],
+    "sens_cell": [
+      2000,
+      100
+    ],
+    "h": "4 g (1 - g)",
+    "H_tau": [
+      0.72,
+      0.7466666666666666,
+      0.6666666666666666,
+      0.48,
+      0.18666666666666662
+    ],
+    "value": "(1 - L) w_j, w_j linear from 1 (most aggressive) to 0.5",
+    "reps": 1000,
+    "interval_level": "one-sided 95% (two-sided 90% CP)"
+  },
+  "cells": [
+    {
+      "n_cert": 2000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2602526572,
+      "n_required_star": 3098,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.5906745503964766,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.05070000000000001,
+        "mc_se": 0.001060723873180544,
+        "aggressive_selections": 276,
+        "mean_R_sel_lower_95": 0.02653970961728777
+      },
+      "first_crossing": {
+        "failures": 28,
+        "rate": 0.028,
+        "cp90": [
+          0.019971978586155535,
+          0.038188865025176225
+        ]
+      },
+      "rcps_scan": {
+        "failures": 28,
+        "rate": 0.028,
+        "cp90": [
+          0.019971978586155535,
+          0.038188865025176225
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1656862755,
+      "n_required_star": 3098,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.5910080079882598,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.072975,
+        "mc_se": 0.0011737342233346642,
+        "aggressive_selections": 573,
+        "mean_R_sel_lower_95": 0.05739680329103272
+      },
+      "first_crossing": {
+        "failures": 107,
+        "rate": 0.107,
+        "cp90": [
+          0.09129556761364513,
+          0.12444768054361086
+        ]
+      },
+      "rcps_scan": {
+        "failures": 23,
+        "rate": 0.023,
+        "cp90": [
+          0.015769269315304684,
+          0.032428870441319126
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 3478895834,
+      "n_required_star": 3098,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.5906899799205816,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.088875,
+        "mc_se": 0.0009748382864273873,
+        "aggressive_selections": 785,
+        "mean_R_sel_lower_95": 0.08006463907657822
+      },
+      "first_crossing": {
+        "failures": 166,
+        "rate": 0.166,
+        "cp90": [
+          0.14689325110723775,
+          0.18657895630947172
+        ]
+      },
+      "rcps_scan": {
+        "failures": 35,
+        "rate": 0.035,
+        "cp90": [
+          0.02597607894594929,
+          0.046138336093647085
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 162296940,
+      "n_required_star": 3320,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6010497006634735,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.05002500000000001,
+        "mc_se": 0.0010497506138847225,
+        "aggressive_selections": 267,
+        "mean_R_sel_lower_95": 0.025621999407847287
+      },
+      "first_crossing": {
+        "failures": 32,
+        "rate": 0.032,
+        "cp90": [
+          0.023388179919139218,
+          0.04274549921339733
+        ]
+      },
+      "rcps_scan": {
+        "failures": 32,
+        "rate": 0.032,
+        "cp90": [
+          0.023388179919139218,
+          0.04274549921339733
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2910264128,
+      "n_required_star": 3320,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6005522659113878,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.083025,
+        "mc_se": 0.0010799957248830972,
+        "aggressive_selections": 707,
+        "mean_R_sel_lower_95": 0.07165125197527354
+      },
+      "first_crossing": {
+        "failures": 166,
+        "rate": 0.166,
+        "cp90": [
+          0.14689325110723775,
+          0.18657895630947172
+        ]
+      },
+      "rcps_scan": {
+        "failures": 28,
+        "rate": 0.028,
+        "cp90": [
+          0.019971978586155535,
+          0.038188865025176225
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 901782689,
+      "n_required_star": 3320,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6014852374199203,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.10095,
+        "mc_se": 0.0005363162640971605,
+        "aggressive_selections": 946,
+        "mean_R_sel_lower_95": 0.09793657169501009
+      },
+      "first_crossing": {
+        "failures": 267,
+        "rate": 0.267,
+        "cp90": [
+          0.24401904197949795,
+          0.29100288052532997
+        ]
+      },
+      "rcps_scan": {
+        "failures": 25,
+        "rate": 0.025,
+        "cp90": [
+          0.017440155567020093,
+          0.034742520099362566
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 3462252994,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6061227539849896,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.05017500000000001,
+        "mc_se": 0.0010522364641926151,
+        "aggressive_selections": 269,
+        "mean_R_sel_lower_95": 0.025825826103941057
+      },
+      "first_crossing": {
+        "failures": 27,
+        "rate": 0.027,
+        "cp90": [
+          0.019124891838234185,
+          0.03704306937436179
+        ]
+      },
+      "rcps_scan": {
+        "failures": 27,
+        "rate": 0.027,
+        "cp90": [
+          0.019124891838234185,
+          0.03704306937436179
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2573032942,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6059159855800834,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.09645000000000001,
+        "mc_se": 0.0007541327576867459,
+        "aggressive_selections": 886,
+        "mean_R_sel_lower_95": 0.09115234194057925
+      },
+      "first_crossing": {
+        "failures": 327,
+        "rate": 0.327,
+        "cp90": [
+          0.30249968618796974,
+          0.3522579374159542
+        ]
+      },
+      "rcps_scan": {
+        "failures": 31,
+        "rate": 0.031,
+        "cp90": [
+          0.022530221674038245,
+          0.041610073480079626
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 4267907593,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6059176603284882,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.105,
+        "mc_se": 4.390737753714545e-19,
+        "aggressive_selections": 1000,
+        "mean_R_sel_lower_95": 0.104685918797765
+      },
+      "first_crossing": {
+        "failures": 810,
+        "rate": 0.81,
+        "cp90": [
+          0.7884257417997473,
+          0.8302100349688245
+        ]
+      },
+      "rcps_scan": {
+        "failures": 42,
+        "rate": 0.042,
+        "cp90": [
+          0.032084914568513666,
+          0.05398720541141853
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 339986421,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.6049346346630147,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.04462500000000001,
+        "mc_se": 0.0009401426717489446,
+        "aggressive_selections": 195,
+        "mean_R_sel_lower_95": 0.018330520247191354
+      },
+      "first_crossing": {
+        "failures": 9,
+        "rate": 0.009,
+        "cp90": [
+          0.004703013189857319,
+          0.015652573749606477
+        ]
+      },
+      "rcps_scan": {
+        "failures": 9,
+        "rate": 0.009,
+        "cp90": [
+          0.004703013189857319,
+          0.015652573749606477
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 576035980,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.605030319650683,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.06465,
+        "mc_se": 0.0011830160721761258,
+        "aggressive_selections": 462,
+        "mean_R_sel_lower_95": 0.04574596799387178
+      },
+      "first_crossing": {
+        "failures": 59,
+        "rate": 0.059,
+        "cp90": [
+          0.04722347226937962,
+          0.07275526713857086
+        ]
+      },
+      "rcps_scan": {
+        "failures": 16,
+        "rate": 0.016,
+        "cp90": [
+          0.010061014595940894,
+          0.02420022583124934
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2251842273,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.6053899267913048,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.0792,
+        "mc_se": 0.0011272225293306691,
+        "aggressive_selections": 656,
+        "mean_R_sel_lower_95": 0.06619954889647235
+      },
+      "first_crossing": {
+        "failures": 74,
+        "rate": 0.074,
+        "cp90": [
+          0.0608300832205164,
+          0.08907221105799837
+        ]
+      },
+      "rcps_scan": {
+        "failures": 16,
+        "rate": 0.016,
+        "cp90": [
+          0.010061014595940894,
+          0.02420022583124934
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 3584926599,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6165015545930895,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.04395000000000001,
+        "mc_se": 0.0009233092656309695,
+        "aggressive_selections": 186,
+        "mean_R_sel_lower_95": 0.01742629351095142
+      },
+      "first_crossing": {
+        "failures": 21,
+        "rate": 0.021,
+        "cp90": [
+          0.014114051922824469,
+          0.0301004713288804
+        ]
+      },
+      "rcps_scan": {
+        "failures": 21,
+        "rate": 0.021,
+        "cp90": [
+          0.014114051922824469,
+          0.0301004713288804
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1418487512,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6164645507627899,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.07230000000000002,
+        "mc_se": 0.0011766879767358019,
+        "aggressive_selections": 564,
+        "mean_R_sel_lower_95": 0.05644708569711289
+      },
+      "first_crossing": {
+        "failures": 116,
+        "rate": 0.116,
+        "cp90": [
+          0.09969813171221781,
+          0.13400299832941565
+        ]
+      },
+      "rcps_scan": {
+        "failures": 25,
+        "rate": 0.025,
+        "cp90": [
+          0.017440155567020093,
+          0.034742520099362566
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1426844567,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6166325449561663,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.0951,
+        "mc_se": 0.0008032030472645977,
+        "aggressive_selections": 868,
+        "mean_R_sel_lower_95": 0.08915407647704159
+      },
+      "first_crossing": {
+        "failures": 154,
+        "rate": 0.154,
+        "cp90": [
+          0.13549805526797232,
+          0.1740285118260165
+        ]
+      },
+      "rcps_scan": {
+        "failures": 13,
+        "rate": 0.013,
+        "cp90": [
+          0.007706232724005362,
+          0.020589286529908307
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1558990991,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6237391336305951,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.043650000000000015,
+        "mc_se": 0.0009155685478246651,
+        "aggressive_selections": 182,
+        "mean_R_sel_lower_95": 0.017025011588095256
+      },
+      "first_crossing": {
+        "failures": 15,
+        "rate": 0.015,
+        "cp90": [
+          0.009268430980521622,
+          0.0230035488509501
+        ]
+      },
+      "rcps_scan": {
+        "failures": 15,
+        "rate": 0.015,
+        "cp90": [
+          0.009268430980521622,
+          0.0230035488509501
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1598212951,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6237701038093586,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.09104999999999999,
+        "mc_se": 0.0009233092656309696,
+        "aggressive_selections": 814,
+        "mean_R_sel_lower_95": 0.08322116646093558
+      },
+      "first_crossing": {
+        "failures": 264,
+        "rate": 0.264,
+        "cp90": [
+          0.2411083591123063,
+          0.28792682005738435
+        ]
+      },
+      "rcps_scan": {
+        "failures": 25,
+        "rate": 0.025,
+        "cp90": [
+          0.017440155567020093,
+          0.034742520099362566
+        ]
+      }
+    },
+    {
+      "n_cert": 5000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1643347457,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6236280405548775,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.105,
+        "mc_se": 4.390737753714545e-19,
+        "aggressive_selections": 1000,
+        "mean_R_sel_lower_95": 0.104685918797765
+      },
+      "first_crossing": {
+        "failures": 537,
+        "rate": 0.537,
+        "cp90": [
+          0.5105079990895071,
+          0.5633302054830771
+        ]
+      },
+      "rcps_scan": {
+        "failures": 11,
+        "rate": 0.011,
+        "cp90": [
+          0.00618087405781239,
+          0.018141892240076254
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2207451506,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.6155383462711306,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.034275000000000014,
+        "mc_se": 0.0005501381890280179,
+        "aggressive_selections": 57,
+        "mean_R_sel_lower_95": 0.004769594318356586
+      },
+      "first_crossing": {
+        "failures": 1,
+        "rate": 0.001,
+        "cp90": [
+          5.1291978909017805e-05,
+          0.004734993575499777
+        ]
+      },
+      "rcps_scan": {
+        "failures": 1,
+        "rate": 0.001,
+        "cp90": [
+          5.1291978909017805e-05,
+          0.004734993575499777
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 907669045,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.615577440021952,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.042600000000000006,
+        "mc_se": 0.0008871454373590767,
+        "aggressive_selections": 168,
+        "mean_R_sel_lower_95": 0.015623587913102125
+      },
+      "first_crossing": {
+        "failures": 8,
+        "rate": 0.008,
+        "cp90": [
+          0.003986851155388229,
+          0.0143882249520919
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 10,
+      "m": 50,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1459040031,
+      "n_required_star": 3098,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.62394,
+        "median_U_lcb": 0.6155743766006935,
+        "oracle_U_dep": 0.62394,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.04627500000000001,
+        "mc_se": 0.0009781135317953032,
+        "aggressive_selections": 217,
+        "mean_R_sel_lower_95": 0.020548165144003677
+      },
+      "first_crossing": {
+        "failures": 12,
+        "rate": 0.012,
+        "cp90": [
+          0.00693838804786669,
+          0.019370199285059248
+        ]
+      },
+      "rcps_scan": {
+        "failures": 6,
+        "rate": 0.006,
+        "cp90": [
+          0.0026161408492456103,
+          0.011807823003840638
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2419716624,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6278657466024585,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.034200000000000015,
+        "mc_se": 0.0005455801111272823,
+        "aggressive_selections": 56,
+        "mean_R_sel_lower_95": 0.004675322916668239
+      },
+      "first_crossing": {
+        "failures": 3,
+        "rate": 0.003,
+        "cp90": [
+          0.0008181753982218001,
+          0.007735244718479458
+        ]
+      },
+      "rcps_scan": {
+        "failures": 3,
+        "rate": 0.003,
+        "cp90": [
+          0.0008181753982218001,
+          0.007735244718479458
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1830445361,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6278966892197089,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.046275000000000004,
+        "mc_se": 0.0009781135317953032,
+        "aggressive_selections": 217,
+        "mean_R_sel_lower_95": 0.020548165144003677
+      },
+      "first_crossing": {
+        "failures": 18,
+        "rate": 0.018,
+        "cp90": [
+          0.011665724468020014,
+          0.026575622645095852
+        ]
+      },
+      "rcps_scan": {
+        "failures": 1,
+        "rate": 0.001,
+        "cp90": [
+          5.1291978909017805e-05,
+          0.004734993575499777
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 20,
+      "m": 100,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2135448920,
+      "n_required_star": 3320,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6366715789473685,
+        "median_U_lcb": 0.6277242729782477,
+        "oracle_U_dep": 0.6366715789473685,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.05992500000000001,
+        "mc_se": 0.001161989498487226,
+        "aggressive_selections": 399,
+        "mean_R_sel_lower_95": 0.03919374091139896
+      },
+      "first_crossing": {
+        "failures": 13,
+        "rate": 0.013,
+        "cp90": [
+          0.007706232724005362,
+          0.020589286529908307
+        ]
+      },
+      "rcps_scan": {
+        "failures": 3,
+        "rate": 0.003,
+        "cp90": [
+          0.0008181753982218001,
+          0.007735244718479458
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1474001264,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6360232046482999,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.03352500000000001,
+        "mc_se": 0.0005021967508622261,
+        "aggressive_selections": 47,
+        "mean_R_sel_lower_95": 0.0038323393208077937
+      },
+      "first_crossing": {
+        "failures": 2,
+        "rate": 0.002,
+        "cp90": [
+          0.0003554761334775969,
+          0.006282284546723426
+        ]
+      },
+      "rcps_scan": {
+        "failures": 2,
+        "rate": 0.002,
+        "cp90": [
+          0.0003554761334775969,
+          0.006282284546723426
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 2987220370,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6360651636336279,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.063,
+        "mc_se": 0.001177874096577129,
+        "aggressive_selections": 440,
+        "mean_R_sel_lower_95": 0.04345283169866083
+      },
+      "first_crossing": {
+        "failures": 40,
+        "rate": 0.04,
+        "cp90": [
+          0.030330486489522402,
+          0.05175340135216044
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 20000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.005,
+      "reps": 1000,
+      "seed": 1572598778,
+      "n_required_star": 3835,
+      "star_satisfied": true,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.636022839420965,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.097275,
+        "mc_se": 0.0007212625004771805,
+        "aggressive_selections": 897,
+        "mean_R_sel_lower_95": 0.09238007504437577
+      },
+      "first_crossing": {
+        "failures": 75,
+        "rate": 0.075,
+        "cp90": [
+          0.061743590118212295,
+          0.09015373215821902
+        ]
+      },
+      "rcps_scan": {
+        "failures": 2,
+        "rate": 0.002,
+        "cp90": [
+          0.0003554761334775969,
+          0.006282284546723426
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.0,
+      "reps": 1000,
+      "seed": 4140536785,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6059790926977418,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.06262000000000001,
+        "mc_se": 0.0011047878330956386,
+        "aggressive_selections": 466,
+        "mean_R_sel_lower_95": null
+      },
+      "first_crossing": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.0,
+      "reps": 1000,
+      "seed": 1352248312,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6062032802816435,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.09790000000000001,
+        "mc_se": 0.00037779985803694093,
+        "aggressive_selections": 970,
+        "mean_R_sel_lower_95": null
+      },
+      "first_crossing": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.0,
+      "reps": 1000,
+      "seed": 4241457052,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.606010648997813,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.10000000000000002,
+        "mc_se": 4.390737753714545e-19,
+        "aggressive_selections": 1000,
+        "mean_R_sel_lower_95": null
+      },
+      "first_crossing": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.01,
+      "reps": 1000,
+      "seed": 4214919247,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6060737670870686,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.04184000000000001,
+        "mc_se": 0.0008987893091388117,
+        "aggressive_selections": 148,
+        "mean_R_sel_lower_95": 0.014279669272979079
+      },
+      "first_crossing": {
+        "failures": 9,
+        "rate": 0.009,
+        "cp90": [
+          0.004703013189857319,
+          0.015652573749606477
+        ]
+      },
+      "rcps_scan": {
+        "failures": 9,
+        "rate": 0.009,
+        "cp90": [
+          0.004703013189857319,
+          0.015652573749606477
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.01,
+      "reps": 1000,
+      "seed": 4244453505,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6058213385899727,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.08712000000000002,
+        "mc_se": 0.0011437717490014403,
+        "aggressive_selections": 714,
+        "mean_R_sel_lower_95": 0.07585007080130415
+      },
+      "first_crossing": {
+        "failures": 162,
+        "rate": 0.162,
+        "cp90": [
+          0.14309064783142364,
+          0.18239964836558678
+        ]
+      },
+      "rcps_scan": {
+        "failures": 11,
+        "rate": 0.011,
+        "cp90": [
+          0.00618087405781239,
+          0.018141892240076254
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.01,
+      "reps": 1000,
+      "seed": 1806157849,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6060811778588227,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.10976000000000005,
+        "mc_se": 0.00013842529234775542,
+        "aggressive_selections": 997,
+        "mean_R_sel_lower_95": 0.10914912308096726
+      },
+      "first_crossing": {
+        "failures": 377,
+        "rate": 0.377,
+        "cp90": [
+          0.351584470068477,
+          0.40295375620849744
+        ]
+      },
+      "rcps_scan": {
+        "failures": 15,
+        "rate": 0.015,
+        "cp90": [
+          0.009268430980521622,
+          0.0230035488509501
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "nested",
+      "eps": 0.02,
+      "reps": 1000,
+      "seed": 697853957,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6060737670870688,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.03153000000000001,
+        "mc_se": 0.0003680959040720158,
+        "aggressive_selections": 17,
+        "mean_R_sel_lower_95": 0.0013032367215494189
+      },
+      "first_crossing": {
+        "failures": 1,
+        "rate": 0.001,
+        "cp90": [
+          5.1291978909017805e-05,
+          0.004734993575499777
+        ]
+      },
+      "rcps_scan": {
+        "failures": 1,
+        "rate": 0.001,
+        "cp90": [
+          5.1291978909017805e-05,
+          0.004734993575499777
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "mixed",
+      "eps": 0.02,
+      "reps": 1000,
+      "seed": 1722536269,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6062032802816439,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.051960000000000006,
+        "mc_se": 0.0012229693594093248,
+        "aggressive_selections": 244,
+        "mean_R_sel_lower_95": 0.026608736043105312
+      },
+      "first_crossing": {
+        "failures": 6,
+        "rate": 0.006,
+        "cp90": [
+          0.0026161408492456103,
+          0.011807823003840638
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    },
+    {
+      "n_cert": 2000,
+      "m_lambda": 100,
+      "m": 500,
+      "coupling": "non-nested",
+      "eps": 0.02,
+      "reps": 1000,
+      "seed": 235422960,
+      "n_required_star": 3835,
+      "star_satisfied": false,
+      "certifier": {
+        "feasible": 1000,
+        "risk_or_acceptance_failures": 0,
+        "risk_or_acceptance_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "utility_failures": 0,
+        "any_failures": 0,
+        "any_cp90": [
+          0.0,
+          0.0029912495450952954
+        ],
+        "median_R_sel": 0.0324,
+        "median_p_acc": 0.9,
+        "median_U_dep": 0.6459309090909091,
+        "median_U_lcb": 0.6064372447894097,
+        "oracle_U_dep": 0.6459309090909091,
+        "median_oracle_gap": 0.0,
+        "kind_counts": {
+          "aggressive": 0,
+          "conservative": 1000,
+          "terminal": 0
+        },
+        "tau_counts": {
+          "0.1": 1000,
+          "0.3": 0,
+          "0.5": 0,
+          "0.7": 0,
+          "0.9": 0
+        }
+      },
+      "crc": {
+        "mean_R_sel": 0.08328000000000002,
+        "mc_se": 0.0013994284547628724,
+        "aggressive_selections": 592,
+        "mean_R_sel_lower_95": 0.06789116125461021
+      },
+      "first_crossing": {
+        "failures": 13,
+        "rate": 0.013,
+        "cp90": [
+          0.007706232724005362,
+          0.020589286529908307
+        ]
+      },
+      "rcps_scan": {
+        "failures": 0,
+        "rate": 0.0,
+        "cp90": [
+          0.0,
+          0.0029912495450952954
+        ]
+      }
+    }
+  ]
+}

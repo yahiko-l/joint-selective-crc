@@ -1,0 +1,3613 @@
+{
+  "experiment": "F1_b1_pc1_30seeds",
+  "date": "2026-05-26",
+  "n_seeds": 30,
+  "n_configs": 16,
+  "total_feasible": 150,
+  "total_vio_joint": 0,
+  "overall_vio_joint_rate": 0.0,
+  "cp_95_upper_one_sided": 0.019773438164508494,
+  "cp_ci_description": "Clopper-Pearson 95% upper one-sided: 0.0198; two-sided: [0.0000, 0.0243] (vio_rate \u2264 0.0198 at 95% conf)",
+  "rows": [
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 35,
+        "pi_min": 0.05,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 35,
+        "pi_min": 0.05,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 8,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 35,
+        "pi_min": 0.1,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 35,
+        "pi_min": 0.1,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 8,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 100,
+        "pi_min": 0.05,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 100,
+        "pi_min": 0.05,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 7,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 100,
+        "pi_min": 0.1,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 5000,
+        "m": 100,
+        "pi_min": 0.1,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 7,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 35,
+        "pi_min": 0.05,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 35,
+        "pi_min": 0.05,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 30,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 43,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 46,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 50,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 51,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 59,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 62,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 65,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 70,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 35,
+        "pi_min": 0.1,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 35,
+        "pi_min": 0.1,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 30,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 43,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 46,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 50,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 51,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 59,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 62,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 65,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 70,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 100,
+        "pi_min": 0.05,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 100,
+        "pi_min": 0.05,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 30,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 43,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 46,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 50,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 51,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 59,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 62,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 65,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 70,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 100,
+        "pi_min": 0.1,
+        "alpha": 0.1,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 0,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 43,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 44,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 45,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 46,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 47,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 48,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 49,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 50,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 51,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 52,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 53,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 54,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 55,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 56,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 57,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 58,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 59,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 60,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 61,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 62,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 63,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 64,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 65,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 66,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 67,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 68,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 69,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 70,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        },
+        {
+          "seed": 71,
+          "feasible": false,
+          "vio_joint": null,
+          "vio_r": null,
+          "vio_p": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_cert": 25000,
+        "m": 100,
+        "pi_min": 0.1,
+        "alpha": 0.3,
+        "delta": 0.1
+      },
+      "n_seeds": 30,
+      "n_feasible": 30,
+      "n_vio_joint": 0,
+      "vio_joint_rate": 0.0,
+      "per_seed": [
+        {
+          "seed": 42,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 43,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 44,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 45,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 46,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 47,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 48,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 49,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 50,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 51,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 52,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 53,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 54,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 55,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 56,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 57,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 58,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 59,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 60,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 61,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 62,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 63,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 64,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 65,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 66,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 67,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 68,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 69,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 70,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        },
+        {
+          "seed": 71,
+          "feasible": true,
+          "vio_r": false,
+          "vio_p": false,
+          "vio_joint": false
+        }
+      ]
+    }
+  ]
+}

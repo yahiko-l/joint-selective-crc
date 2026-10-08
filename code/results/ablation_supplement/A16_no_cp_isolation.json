@@ -1,0 +1,81 @@
+{
+  "sweep": [
+    {
+      "pi_min": 0.0005,
+      "p_true": 0.001,
+      "n": 25000,
+      "delta": 0.05,
+      "m": 35,
+      "delta_per": 0.0014285714285714286,
+      "cp_pass_rate": 0.526,
+      "hoeffding_pass_rate": 0.0,
+      "cp_lcb_mean": 0.0005122701528009244,
+      "hoeffding_lcb_mean": 0.0,
+      "hoeffding_radius": 0.01144646699645214,
+      "cp_pass_vs_hoeffding_pass": Infinity
+    },
+    {
+      "pi_min": 0.001,
+      "p_true": 0.002,
+      "n": 25000,
+      "delta": 0.05,
+      "m": 35,
+      "delta_per": 0.0014285714285714286,
+      "cp_pass_rate": 0.8885,
+      "hoeffding_pass_rate": 0.0,
+      "cp_lcb_mean": 0.0012572786286959604,
+      "hoeffding_lcb_mean": 0.0,
+      "hoeffding_radius": 0.01144646699645214,
+      "cp_pass_vs_hoeffding_pass": Infinity
+    },
+    {
+      "pi_min": 0.002,
+      "p_true": 0.004,
+      "n": 25000,
+      "delta": 0.05,
+      "m": 35,
+      "delta_per": 0.0014285714285714286,
+      "cp_pass_rate": 0.9975,
+      "hoeffding_pass_rate": 0.0,
+      "cp_lcb_mean": 0.0029133900104513456,
+      "hoeffding_lcb_mean": 0.0,
+      "hoeffding_radius": 0.01144646699645214,
+      "cp_pass_vs_hoeffding_pass": Infinity
+    },
+    {
+      "pi_min": 0.005,
+      "p_true": 0.01,
+      "n": 25000,
+      "delta": 0.05,
+      "m": 35,
+      "delta_per": 0.0014285714285714286,
+      "cp_pass_rate": 1.0,
+      "hoeffding_pass_rate": 0.0,
+      "cp_lcb_mean": 0.008205022672665927,
+      "hoeffding_lcb_mean": 1.2914975266089483e-06,
+      "hoeffding_radius": 0.01144646699645214,
+      "cp_pass_vs_hoeffding_pass": Infinity
+    },
+    {
+      "pi_min": 0.01,
+      "p_true": 0.02,
+      "n": 25000,
+      "delta": 0.05,
+      "m": 35,
+      "delta_per": 0.0014285714285714286,
+      "cp_pass_rate": 1.0,
+      "hoeffding_pass_rate": 0.052,
+      "cp_lcb_mean": 0.017444169312904868,
+      "hoeffding_lcb_mean": 0.008536633003547858,
+      "hoeffding_radius": 0.01144646699645214,
+      "cp_pass_vs_hoeffding_pass": 19.23076923076923
+    }
+  ],
+  "config": {
+    "n_trials": 2000,
+    "n": 25000,
+    "delta": 0.05,
+    "m": 35,
+    "p_true_multiplier": 2.0
+  }
+}
