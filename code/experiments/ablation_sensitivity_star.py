@@ -29,13 +29,17 @@ Output: results/ablation_supplement/A18_imagenet_resnet50v2_sensitivity_star.jso
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 
-from src.selective_crc import certify_grid, three_split_indices
-from experiments import cifar100
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))
 
+from selective_crc import certify_grid, three_split_indices  # noqa: E402
+from experiments import cifar100  # noqa: E402
 
 import os
 # Dataset cache root. Point SCORC_DATA_DIR at the directory that holds
@@ -44,7 +48,6 @@ import os
 DATA_ROOT = os.environ.get(
     "SCORC_DATA_DIR", str(Path(__file__).resolve().parent.parent / "data"))
 
-ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "ablation_supplement"
 
 LOGITS = f"{DATA_ROOT}/imagenet_data/val_logits.npy"
