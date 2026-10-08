@@ -12,14 +12,14 @@ that set.
 
 ## What is here
 
-- [`code/`](code/) the certifier, the baselines, the verification and analysis
-  scripts, the cache-generation scripts, and a small cached COCO val2017 slice. The
-  headline utility-leg results reproduce from the bundle alone, with no external
-  dataset and no model checkpoint. [`code/README.md`](code/README.md) is the full
-  guide: layout, environment, per-script reference, and reproduction conventions.
-
-The precomputed result files behind the paper's tables and figures, and the
-table/figure generators that render them, are released when the paper is published.
+- [`code/`](code/) the certifier, the baselines, the verification, analysis and
+  experiment scripts, the cache-generation scripts, and a small cached COCO val2017
+  slice. The headline utility-leg results reproduce from the bundle alone, with no
+  external dataset and no model checkpoint. [`code/README.md`](code/README.md) is the
+  full guide: layout, environment, per-script reference, and reproduction conventions.
+- [`code/results/`](code/results/) the precomputed result files behind the paper's
+  tables and figures, and [`code/paper/`](code/paper/) the scripts that render those
+  tables and figures from them.
 
 ## Quick start
 
@@ -44,6 +44,18 @@ python experiments/audit_cor9_regime.py       # per-pair regime audit, 2,700 COC
 
 Everything else needs the per-image loss caches. Point `SCORC_DATA_DIR` at the
 directory holding them first, as described in [`code/README.md`](code/README.md).
+
+## Tables and figures
+
+Each script in `code/paper/` renders one of the paper's tables or figures from the
+result files in `code/results/` and writes it to `code/paper/out/`. The figure scripts
+also need matplotlib:
+
+```bash
+cd code/paper
+python table_validity.py   # held-out validity across the four evaluation surfaces
+python fig_validity.py     # realized selected-risk margins on every surface
+```
 
 ## Integrity
 

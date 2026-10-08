@@ -3,12 +3,11 @@
 Reference implementation for *"A Joint Finite-Sample Certificate for Adaptive
 Selective Conformal Risk Control."*
 
-This is the **code release**. It contains the certifier, the baselines, the analysis
-and verification scripts, the cache-generation scripts, and a small cached COCO data
-slice that makes the utility-leg results reproducible with no external dataset and no
-model checkpoint. The precomputed result files behind the paper's tables and figures,
-and the table/figure generators that render them, are released when the paper is
-published.
+It contains the certifier, the baselines, the analysis, verification and experiment
+scripts, the cache-generation scripts, a small cached COCO data slice that makes the
+utility-leg results reproducible with no external dataset and no model checkpoint, the
+precomputed result files behind the paper's tables and figures, and the scripts that
+render those tables and figures.
 
 ## Layout
 
@@ -20,7 +19,9 @@ code/
 │   ├── baselines.py         Hoeffding–CRC, A(π_min), A(p_LCB), sign-aware A(CP±),
 │   │                        per-pair Bernstein, WSR
 │   └── grid_search.py, protocol.py
-├── experiments/           Verification, analysis and cache-generation scripts
+├── experiments/           Verification, analysis, experiment and cache-generation scripts
+├── results/               Precomputed result files behind the paper's tables and figures
+├── paper/                 Scripts that render the paper's tables and figures from results/
 ├── configs/               YAML config for the ImageNet runner
 └── data/coco/             Cached COCO val2017 per-image arrays (6 files, 120 KB)
 ```
@@ -36,7 +37,10 @@ scipy==1.16.3
 
 (`requirements.txt`). The `*_compute_logits.py` scripts, which recompute per-image
 losses from scratch, additionally need `torch` and `transformers` plus the public
-datasets and checkpoints, neither of which is bundled.
+datasets and checkpoints, neither of which is bundled. `imagenet_extract_features.py`
+needs `torch`, `torchvision`, `pyarrow` and `Pillow`, and
+`learned_deferral_imagenet.py` needs `torch` and `torchvision`. The scripts in `paper/`
+need `matplotlib` as well; the paper's figures were rendered with matplotlib 3.10.7.
 
 **Dataset cache location.** Scripts that read per-image caches resolve them under
 `$SCORC_DATA_DIR`, defaulting to this bundle's `data/` directory. Set it to the
@@ -91,8 +95,8 @@ python experiments/audit_cor9_regime.py
 
 Per-(grid pair, seed) regime audit. The COCO blocks run from the bundled cache and
 cover 2,700 cells, on which the leading-order rule is tested directly against the
-realised per-pair winner. The ImageNet block re-reads a cached run that is not part of
-this bundle and is skipped with a message.
+realised per-pair winner. The ImageNet block re-reads the cached run in
+`results/imagenet_primary_real/`.
 
 Both verification scripts are deterministic: rerunning them reproduces their output
 exactly.
@@ -101,7 +105,7 @@ exactly.
 
 These scripts reproduce the paper's analyses from cached per-image losses. Point
 `SCORC_DATA_DIR` at a directory holding those caches first; some also re-read result
-files from a previous run, which are released with the paper.
+files in `results/`.
 
 | script | analysis |
 |---|---|
@@ -113,6 +117,9 @@ files from a previous run, which are released with the paper.
 | `analysis_cert_frontier.py` | per-pair certified frontier |
 | `analysis_certified_decision_payoff.py` | certified-decision payoff across backbones |
 | `ablation_sensitivity_star.py` | hyperparameter star design and small-calibration block |
+| `nonmonotone_synthetic.py`, `nonmonotone_imagenet.py` | non-monotone losses: synthetic couplings with CRC and RCPS threshold rules (needs no cache), and an ImageNet top-k set loss |
+| `learned_deferral_imagenet.py` | learned abstention head on cached ResNet-50 V2 features, certified next to softmax scores |
+| `runtime_grid_scaling.py` | certifier runtime versus grid size |
 | `imagenet_scale.py`, `synthetic_full.py` | the ImageNet and synthetic runners |
 
 `experiments/cifar100.py` ships as the shared acceptance-set helper imported by the
@@ -126,7 +133,38 @@ released pipeline.
 the public datasets (ImageNet-1k val, CIFAR-100 test, COCO val2017 panoptic, ADE20K)
 and the checkpoints named in the paper (ResNet-50/101/152 V2, Mask2Former-Swin-B,
 SegFormer-MiT-B2). Datasets and checkpoints are large and externally hosted, so they
-are not bundled.
+are not bundled. `imagenet_extract_features.py` caches the ResNet-50 V2 penultimate
+features that `learned_deferral_imagenet.py` reads, and saves them only when the
+pretrained classifier layer reproduces the cached ImageNet logits.
+
+## Result files
+
+`results/` holds the precomputed result files behind the paper's tables and figures, in
+the directories that the scripts above write to:
+
+| directory | contents |
+|---|---|
+| `ablation_supplement/` | ablations, sweeps, sensitivity analyses, baseline comparisons, the segmentation runs, and the certifier timings |
+| `analysis/` | certified-decision payoff and frontier, infeasibility census, per-cell regime audit, held-out oracle certification |
+| `imagenet_primary_real/`, `cifar100_full/`, `synthetic_full/` | per-seed validity runs on ImageNet, CIFAR-100 and the synthetic surface |
+| `nonmonotone/`, `learned_deferral/` | the non-monotone-loss and learned-abstention experiments |
+
+## Tables and figures
+
+Each script in `paper/` renders one of the paper's tables or figures from `results/`
+and writes it to `paper/out/`:
+
+| script | output |
+|---|---|
+| `table_validity.py` | held-out validity across the four evaluation surfaces |
+| `table_cert_decision.py` | certified-decision payoff on three ImageNet backbones |
+| `table_effect_sizes.py` | re-split effect sizes for the headline comparisons |
+| `table_ingredients.py` | eight-ingredient stress matrix |
+| `fig_validity.py` | per-seed realized test-risk margins on six evaluation surfaces |
+| `fig_width_scaling.py` | closed-form width scaling, three panels |
+| `fig_variance_adaptive.py` | variance-adaptive width ratios on ImageNet |
+| `fig_frontier.py` | certified operating frontier on three ImageNet backbones |
+| `fig_coco_acceptance.py` | COCO certified acceptance and realized test behaviour, two panels |
 
 ## Integrity
 
